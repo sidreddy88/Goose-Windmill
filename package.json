@@ -1,0 +1,27 @@
+{
+  "name": "Goose-Windmill",
+  "version": "1.0.0",
+  "description": "Hacker News follower functionality",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kennyt/Goose-Windmill.git"
+  },
+  "keywords": [
+    "hacker",
+    "news",
+    "feed"
+  ],
+  "author": "Goose Windmil",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kennyt/Goose-Windmill/issues"
+  },
+  "homepage": "https://github.com/kennyt/Goose-Windmill",
+  "dependencies": {
+    "express": "^4.12.3"
+  }
+}
