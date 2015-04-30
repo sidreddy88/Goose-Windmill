@@ -1,7 +1,7 @@
 angular.module('hack.services', [])
 
 .factory('Links', function($http) {
-  var getStories = function() {
+  var getStoryIds = function() {
     return $http({
       method: 'GET',
       url: 'https://hacker-news.firebaseio.com/v0/topstories.json'
@@ -11,7 +11,24 @@ angular.module('hack.services', [])
     });
   };
 
+  // var getStories = function(ids) { //ids is array of story ids
+    
+  //   return $http({
+  //     method: 'GET',
+  //     url: 'http://hn.algolia.com/api/v1/search?tagFilters=story,(story_9464348'
+  //   })
+  //   .then(function(resp) {
+
+  //   });
+  // };
+
   return {
-    getStories: getStories
+    getStoryIds: getStoryIds
+
   };
-})
+
+
+  
+
+
+});

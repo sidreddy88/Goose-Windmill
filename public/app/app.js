@@ -1,6 +1,6 @@
 angular.module('hack', [
-  'hack.stories',
-  'hack.comments',
+  'hack.topStories',
+  'hack.personal',
   'hack.services',
   'ngRoute'
 ])
@@ -8,9 +8,8 @@ angular.module('hack', [
 .config(function($routeProvider, $httpProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: 'public/app/stories/stories.html',
-      controller: 'StoriesController'
-    })
-
-})
+      templateUrl: 'app/topStories/topStories.html',
+      controller: 'TopStoriesController'
+    });
+});
 
