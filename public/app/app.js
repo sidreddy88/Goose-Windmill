@@ -10,6 +10,13 @@ angular.module('hack', [
     .when('/', {
       templateUrl: 'app/topStories/topStories.html',
       controller: 'TopStoriesController'
+    })
+    .when('/personal', {
+      templateUrl: 'app/personal/personal.html',
+      controller: 'PersonalController'
+    })
+    .otherwise({
+      redirectTo: '/'
     });
 });
 
