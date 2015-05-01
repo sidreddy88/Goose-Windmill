@@ -1,6 +1,6 @@
 angular.module('hack.topStories', [])
 
-.controller('TopStoriesController', function ($scope, $window, Links) {
+.controller('TopStoriesController', function ($scope, $window, Links, Followers) {
   angular.extend($scope, Links);
   $scope.storyIds = {};
   $scope.stories = {};
@@ -21,7 +21,7 @@ angular.module('hack.topStories', [])
   $scope.getData();
   $window.localStorage.setItem('hfPosts', '');
   $scope.addUser = function(username) {
-    Links.addFollower(username);
+    Followers.addFollower(username);
   };
 });
 

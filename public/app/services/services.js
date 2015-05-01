@@ -1,6 +1,6 @@
 angular.module('hack.services', [])
 
-.factory('Links', ['$http', '$window', '$controller', function($http, $window, $controller) {
+.factory('Links', function($http) {
   var getStoryIds = function() {
     return $http({
       method: 'GET',
@@ -47,10 +47,17 @@ angular.module('hack.services', [])
     });
   };
 
+  return {
+    getStoryIds: getStoryIds,
+    getStories: getStories,
+    getPersonalStories: getPersonalStories
+  };
+})
+.factory('Followers',  function($http, $window) {
   var following = [];
 
   var addFollower = function(username){
-    var localFollowing = $window.localStorage.getItem('hfUsers');
+    var localFollowing = localStorageUsers();
 
     if (!localFollowing.includes(username) && following.indexOf(username) === -1) {
       localFollowing += ',' + username
@@ -58,6 +65,22 @@ angular.module('hack.services', [])
       following.push(username);
     }
   };
+
+  var removeFollower = function(username){
+    var localFollowing = localStorageUsers();
+
+    if (localFollowing.includes(username) && following.indexOf(username) > -1) {
+      following.splice(following.indexOf(username), 1);
+
+      localFollowing = localFollowing.split(',');
+      localFollowing.splice(localFollowing.indexOf(username), 1).join(',');
+      $window.localStorage.setItem('hfUsers', localFollowing);
+    }
+  };
+
+  var localStorageUsers = function(){
+    return $window.localStorage.getItem('hfUsers');
+  }
 
   var init = function(){
     var users = $window.localStorage.getItem('hfUsers').split(',');
@@ -68,12 +91,10 @@ angular.module('hack.services', [])
   };
 
   init();
-  
+
   return {
-    getStoryIds: getStoryIds,
-    getStories: getStories,
-    getPersonalStories: getPersonalStories,
     following: following,
-    addFollower: addFollower
-  };
-}]);
+    addFollower: addFollower,
+    removeFollower: removeFollower
+  }
+});
