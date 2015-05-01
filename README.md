@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/goose-windmill/goose-windmill.png?label=ready&title=Ready)](https://waffle.io/goose-windmill/goose-windmill)
 # Goose-Windmill
 
 > Improve Hacker News UX by automating a stream of user specified content.
