@@ -2,6 +2,7 @@ angular.module('hack.personal', [])
 
 .controller('PersonalController', function ($scope, $window, Links) {
   $scope.stories = [];
+  $scope.index = 30;
 
   var init = function(){
     if (!$window.localStorage.getItem('hfUsers')) {
