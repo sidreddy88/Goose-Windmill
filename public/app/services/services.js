@@ -12,12 +12,18 @@ angular.module('hack.services', [])
   };
 
   var getStories = function(ids) { //ids is array of story ids
+
+    var url = 'http://hn.algolia.com/api/v1/search?tagFilters=story,('
+    for(var i = 0; i < ids.length;i++) {
+      url +='story_'+ids[i]+',';
+    }
+    url +=')';
     return $http({
       method: 'GET',
-      url: 'http://hn.algolia.com/api/v1/search?tagFilters=story,(story_9464348'
+      url: url
     })
     .then(function(resp) {
-
+      return resp.data;
     });
   };
 
@@ -41,8 +47,10 @@ angular.module('hack.services', [])
     });
   }
 
+  
   return {
     getStoryIds: getStoryIds,
+    getStories: getStories,
     getPersonalStories: getPersonalStories
   };
 

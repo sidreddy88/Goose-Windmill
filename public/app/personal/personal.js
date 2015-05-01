@@ -13,7 +13,7 @@ angular.module('hack.personal', [])
   };
   
   var fetchUsers = function(){
-    var users = $scope.users;
+    var users = $window.localStorage.getItem('hfUsers').split(',');
 
     Links.getPersonalStories(users).then(function(data){
       $scope.stories = data.hits;
@@ -22,6 +22,8 @@ angular.module('hack.personal', [])
   
   init();
 });
+
+
 
 
   
