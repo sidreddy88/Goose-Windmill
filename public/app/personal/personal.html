@@ -1,7 +1,8 @@
 <div>Personal Stories</div>
-<ul ng-repeat="story in stories">
+<ul ng-repeat="story in stories | limitTo: index">
   <li>
     <a href="{{story.url}}">{{story.title}}</a><br>
     by {{story.author}}
   </li>
 </ul>
+<div ng-show="index < stories.length" ng-click="index = index + 30;">more</div>

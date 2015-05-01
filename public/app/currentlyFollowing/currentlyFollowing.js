@@ -1,6 +1,6 @@
 angular.module('hack.currentlyFollowing', [])
 
-.controller('CurrentlyFollowingController', function ($scope, $window, Followers) {
+.controller('CurrentlyFollowingController', function ($scope, Followers) {
   $scope.currentlyFollowing = Followers.following;
 
   var init = function(){
