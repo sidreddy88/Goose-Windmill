@@ -1,0 +1,27 @@
+{
+  "name": "Goose-Windmill",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Goose-Windmill/Goose-Windmill",
+  "authors": [
+    "Siddharth Sukumar <siddharth@inauth.com>"
+  ],
+  "description": "\"Hacking hacker news\"",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.15",
+    "underscore": "~1.8.3",
+    "angular-mocks": "~1.3.15",
+    "angular-route": "~1.3.15"
+  }
+}

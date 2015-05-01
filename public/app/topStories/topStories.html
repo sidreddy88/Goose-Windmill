@@ -1,3 +1,13 @@
 <div>
-  <div>{{stories}}</div>
+
+  <div class="userDisplay" ng-repeat="story in stories">
+  </br>
+    <a href="{{story.url}}">{{story.title}}</a>
+    </br>
+    <button ng-click="addUser(story.author)">Follow</button>
+    <span> Author: {{ story.author}}</span>
+    <a href="https://news.ycombinator.com/item?id={{story.objectID}}">Discussion</a>
+
+  </div>
 </div>
+
