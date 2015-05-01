@@ -21,13 +21,7 @@ angular.module('hack.topStories', [])
   $scope.getData();
   $window.localStorage.setItem('hfPosts', '');
   $scope.addUser = function(username) {
-    console.log("Adding user!");
-    var following = $window.localStorage.getItem('hfUsers');
-    if (!following.includes(username)) {
-      following += ',' + username
-      $window.localStorage.setItem('hfUsers', following);
-    }
-    console.log(following);
+    Links.addFollower(username);
   };
 });
 
