@@ -45,17 +45,56 @@ angular.module('hack.services', [])
     .then(function(resp) {
       return resp.data;
     });
-  }
+  };
 
-  
   return {
     getStoryIds: getStoryIds,
     getStories: getStories,
     getPersonalStories: getPersonalStories
   };
+})
+.factory('Followers',  function($http, $window) {
+  var following = [];
 
+  var addFollower = function(username){
+    var localFollowing = localStorageUsers();
 
-  
+    if (!localFollowing.includes(username) && following.indexOf(username) === -1) {
+      localFollowing += ',' + username
+      $window.localStorage.setItem('hfUsers', localFollowing);
+      following.push(username);
+    }
+  };
 
+  var removeFollower = function(username){
+    var localFollowing = localStorageUsers();
 
+    if (localFollowing.includes(username) && following.indexOf(username) > -1) {
+      following.splice(following.indexOf(username), 1);
+
+      localFollowing = localFollowing.split(',');
+      localFollowing.splice(localFollowing.indexOf(username), 1).join(',');
+      $window.localStorage.setItem('hfUsers', localFollowing);
+    }
+  };
+
+  var localStorageUsers = function(){
+    return $window.localStorage.getItem('hfUsers');
+  }
+
+  var init = function(){
+    var users = $window.localStorage.getItem('hfUsers').split(',');
+
+    for(var i = 0; i < users.length; i++){
+      following.push(users[i]);
+    }
+  };
+
+  init();
+
+  return {
+    following: following,
+    addFollower: addFollower,
+    removeFollower: removeFollower
+  }
 });

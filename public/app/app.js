@@ -1,6 +1,7 @@
 angular.module('hack', [
   'hack.topStories',
   'hack.personal',
+  'hack.currentlyFollowing',
   'hack.services',
   'ngRoute'
 ])

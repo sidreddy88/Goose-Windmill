@@ -13,6 +13,16 @@
       <a href="#/">Home</a>
       <a href="#/personal">Personal</a>
     </div>
+
+    <div class="currently-following" ng-controller="CurrentlyFollowingController">
+      <h2>Currently Following</h2>
+      <ul ng-repeat="user in currentlyFollowing">
+        <li>
+          {{user}}   <span ng-click="unfollow(user);">x</span>
+        </li>
+      </ul>
+    </div>
+
     <!-- the ng-view directive is where our templates will be loaded into when navigated to -->
     <div ng-view></div>
 
@@ -20,6 +30,7 @@
     <script src="lib/angular-route.min.js"></script>
     <script src="lib/angular-mocks.js"></script>
     <script src="app/topStories/topStories.js"></script>
+    <script src="app/currentlyFollowing/currentlyFollowing.js"></script>
     <script src="app/personal/personal.js"></script>
     <script src="app/services/services.js"></script>
     <script src="app/app.js"></script>
