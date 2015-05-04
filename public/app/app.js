@@ -3,6 +3,7 @@ angular.module('hack', [
   'hack.personal',
   'hack.currentlyFollowing',
   'hack.services',
+  'hack.tabs',
   'ngRoute'
 ])
 

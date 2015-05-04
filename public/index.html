@@ -4,27 +4,37 @@
     <meta charset="utf-8" />
     <title>Hack Feed</title>
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
   </head>
   <body>
   
-    <h1>Hack Feed</h1>
 
-    <div class="tabs">
-      <a href="#/">Home</a>
-      <a href="#/personal">Personal</a>
-    </div>
+    <div class="left-container">
+      <div class="tabs" ng-controller="TabsController">
+        <a class="tab" href="#/" ng-click="changeTab('all')">
+          All
+          <div class="active" ng-show="currentTab === 'all'"></div>
+        </a>
+        <a class="tab" href="#/personal" ng-click="changeTab('personal')">
+          Personal
+          <div class="active" ng-show="currentTab === 'personal'"></div>
+        </a>
+      </div>
 
-    <div class="currently-following" ng-controller="CurrentlyFollowingController">
-      <h2>Currently Following</h2>
-      <ul ng-repeat="user in currentlyFollowing">
-        <li>
+      <h2 class="following-header">Following</h2>
+      <div class="currently-following" ng-controller="CurrentlyFollowingController">
+        <div class="followed-user" ng-repeat="user in currentlyFollowing">
           {{user}}   <span ng-click="unfollow(user);">x</span>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
 
     <!-- the ng-view directive is where our templates will be loaded into when navigated to -->
-    <div ng-view></div>
+    <div class="feed">
+      <div ng-view></div>
+    </div>
+
+    <!-- <h1 class="hero-header">Hacker Feed</h1> -->
 
     <script src="lib/angular.js"></script>
     <script src="lib/angular-route.min.js"></script>
@@ -33,6 +43,7 @@
     <script src="app/currentlyFollowing/currentlyFollowing.js"></script>
     <script src="app/personal/personal.js"></script>
     <script src="app/services/services.js"></script>
+    <script src="app/tabs/tabs.js"></script>
     <script src="app/app.js"></script>
     
   </body>

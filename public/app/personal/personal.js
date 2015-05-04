@@ -15,12 +15,3 @@ angular.module('hack.personal', [])
   
   init();
 });
-
-
-
-
-  
-
-
-
-
