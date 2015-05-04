@@ -1,8 +1,13 @@
-<div>Personal Stories</div>
-<ul ng-repeat="story in stories | limitTo: index">
-  <li>
-    <a href="{{story.url}}">{{story.title}}</a><br>
-    by {{story.author}}
-  </li>
-</ul>
+<div>
+  <div class="story" ng-repeat="story in stories | limitTo: index">
+    <div class="points-bar" style="width:{{125 * story.points/600 + 2}}px;"></div>
+    <a class="story-title" href="{{story.url}}">{{story.title}}</a>
+    <div class="bottom-row">
+      <span>{{story.points}} points</span> | 
+      <span>{{ story.author}}</span> |
+      <a href="https://news.ycombinator.com/item?id={{story.objectID}}">discuss</a>
+    </div>
+  </div>
+</div>
+
 <div ng-show="index < stories.length" ng-click="index = index + 30;">more</div>

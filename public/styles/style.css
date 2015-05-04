@@ -1,1 +1,140 @@
-dhdhd
+body{
+  font-family: helvetica, arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  /*background: #F8F8F8;*/
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+a{
+  color: black;
+  text-decoration: none;
+}
+
+.left-container {
+  width: 400px;
+  height: 100%;
+  float: left;
+  position: fixed;
+  background: #404040;
+
+}
+
+.tabs{
+  width: 100%;
+  background: white;
+}
+
+.tab {
+  display: block;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  height: 50px;
+  padding-left: 100px;
+  text-decoration: none;
+  font-size: 50px;
+  letter-spacing: -3px;
+  font-weight: bold;
+  position: relative;
+  color: #303030;
+}
+.tab:hover{
+  background: #F0F0F0;
+}
+
+.currently-following{
+  width: 305px;
+  height: 100%;
+  margin: 0;
+  color: white;
+  margin-left: 95px;
+  margin-top: 60px;
+}
+
+.following-header {
+  color: white;
+  text-align: center;
+  margin-top: 270px;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 50px;
+  letter-spacing: -3px;
+}
+
+.hero-header {
+  font-size: 50px;
+  top: 270px;
+  position: fixed;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  /*right: -100px;*/
+  left: 95%;
+  margin: 0;
+}
+
+.feed {
+  float: left;
+  margin-left: 545px;
+  margin-top: 30px;
+}
+
+.story{
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.followed-user {
+  padding: 10px;
+  float: left;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  color: black;
+  background: white;
+}
+
+.followed-user:hover {
+  background: lightgrey;
+}
+
+.story-title {
+  font-size: 17px;
+  font-weight: 600;
+  font-family: 'open sans';
+}
+
+.bottom-row {
+  /*color: grey;*/
+  opacity: 0.5;
+  font-size: 13px;
+}
+
+.points-bar {
+  background: #B0B0B0;
+  /*background: black;*/
+  height: 8px;
+  position: absolute;
+  box-sizing: border-box;
+  right: 100%;
+  margin-right: 10px;
+  top: 10px;
+}
+
+.active {
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #585858;
+
+  right: 5px;
+  position: absolute;
+  top: 38px;
+}
