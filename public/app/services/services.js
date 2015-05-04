@@ -1,6 +1,8 @@
 angular.module('hack.services', [])
 
-.factory('Links', function($http) {
+.factory('Links', function($http, $interval) {
+  var personalStories = [];
+
   var getStoryIds = function() {
     return $http({
       method: 'GET',
@@ -43,14 +45,16 @@ angular.module('hack.services', [])
       url: query
     })
     .then(function(resp) {
-      return resp.data;
+      personalStories.splice(0, personalStories.length);
+      personalStories.push.apply(personalStories, resp.data.hits);
     });
   };
 
   return {
     getStoryIds: getStoryIds,
     getStories: getStories,
-    getPersonalStories: getPersonalStories
+    getPersonalStories: getPersonalStories,
+    personalStories: personalStories
   };
 })
 .factory('Followers',  function($http, $window) {
@@ -83,7 +87,11 @@ angular.module('hack.services', [])
   }
 
   var init = function(){
-    var users = $window.localStorage.getItem('hfUsers').split(',');
+    if(!localStorageUsers()){
+      $window.localStorage.setItem('hfUsers', 'pg');
+    }
+
+    var users = localStorageUsers().split(',');
 
     for(var i = 0; i < users.length; i++){
       following.push(users[i]);
