@@ -125,6 +125,7 @@ a{
   right: 100%;
   margin-right: 10px;
   top: 10px;
+  max-width: 133px;
 }
 
 .active {
