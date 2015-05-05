@@ -2,9 +2,12 @@
   <div class="story" ng-repeat="story in stories | limitTo: index">
     <div class="points-bar" style="width:{{125 * story.points/400 + 2}}px;"></div>
     <a class="story-title" href="{{story.url}}">{{story.title}}</a>
+    <span class="source-url">{{story.url.split('/')[2]}}</span>
+
     <div class="bottom-row">
       <span>{{story.points}} points</span> | 
-      <span>{{ story.author}}</span> |
+      <a href="https://news.ycombinator.com/user?id={{story.author}}">{{story.author}}</a> |
+      <span>{{story.created_at | fromNow}}</span> |
       <a href="https://news.ycombinator.com/item?id={{story.objectID}}">
         {{story.num_comments ? story.num_comments + ' comments' : 'discuss'}}
       </a>

@@ -20,5 +20,11 @@ angular.module('hack', [
     .otherwise({
       redirectTo: '/'
     });
+})
+
+.filter('fromNow', function(){
+  return function(date){
+    return humanized_time_span(new Date(date));
+  }
 });
 
