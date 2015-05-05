@@ -139,3 +139,8 @@ a{
   position: absolute;
   top: 38px;
 }
+
+.source-url {
+  opacity: 0.3;
+  font-size: 13px;
+}
