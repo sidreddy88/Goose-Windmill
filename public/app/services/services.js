@@ -15,11 +15,14 @@ angular.module('hack.services', [])
 
   var getStories = function(ids) { //ids is array of story ids
 
-    var url = 'http://hn.algolia.com/api/v1/search?tagFilters=story,('
-    for(var i = 0; i < ids.length;i++) {
-      url +='story_'+ids[i]+',';
+    var url = 'http://hn.algolia.com/api/v1/search?hitsPerPage=30&tagFilters=story,('
+    var storyQuery = [];
+
+    for(var i = 0; i < ids.length; i++) {
+      storyQuery.push('story_' + ids[i]);
     }
-    url +=')';
+    url += storyQuery.join(',') + ')';
+
     return $http({
       method: 'GET',
       url: url

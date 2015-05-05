@@ -8,7 +8,17 @@ angular.module('hack.topStories', [])
     Links.getStoryIds().then(function(data) {
       $scope.storyIds = data.slice(0, 30);
       Links.getStories($scope.storyIds).then(function(data) {
-        $scope.stories = data["hits"];
+        $scope.stories = [];
+        var index;
+        var indexMap = data.hits.map(function(obj) {
+          return obj.objectID;
+        });
+
+        //Map stories data according to storyIds sort
+        for(var i = 0; i < $scope.storyIds.length; i++) {
+          index = indexMap.indexOf(String($scope.storyIds[i]));
+          $scope.stories.push(data.hits[index]);
+        }
       }).catch(function(error) {
         console.error(error);
       })
