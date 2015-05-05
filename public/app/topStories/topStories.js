@@ -17,7 +17,11 @@ angular.module('hack.topStories', [])
         //Map stories data according to storyIds sort
         for(var i = 0; i < $scope.storyIds.length; i++) {
           index = indexMap.indexOf(String($scope.storyIds[i]));
-          $scope.stories.push(data.hits[index]);
+          var item = data.hits[index];
+          
+          if(item){
+            $scope.stories.push(data.hits[index]);
+          }
         }
       }).catch(function(error) {
         console.error(error);
