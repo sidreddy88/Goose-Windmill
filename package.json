@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kennyt/Goose-Windmill.git"
+    "url": "https://github.com/Goose-Windmill/Goose-Windmill"
   },
   "keywords": [
     "hacker",
@@ -18,10 +18,12 @@
   "author": "Goose Windmil",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kennyt/Goose-Windmill/issues"
+    "url": "https://github.com/Goose-Windmill/Goose-Windmill"
   },
-  "homepage": "https://github.com/kennyt/Goose-Windmill",
+  "homepage": "https://github.com/Goose-Windmill/Goose-Windmill",
   "dependencies": {
-    "express": "^4.12.3"
+    "express": "^4.12.3",
+    "mongodb": "^2.0.28",
+    "mongoose": "^4.0.2"
   }
 }
