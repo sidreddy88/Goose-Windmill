@@ -23,6 +23,7 @@
   "homepage": "https://github.com/Goose-Windmill/Goose-Windmill",
   "dependencies": {
     "bcrypt": "^0.8.2",
+    "bcrypt-nodejs": "0.0.3",
     "express": "^4.12.3",
     "mongodb": "^2.0.28",
     "mongoose": "^4.0.2"
