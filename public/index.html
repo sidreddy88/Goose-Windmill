@@ -11,11 +11,11 @@
 
     <div class="left-container">
       <div class="tabs" ng-controller="TabsController">
-        <a class="tab" href="#/" ng-click="changeTab('all')">
+        <a ng-class="currentTab === 'all' ? 'tab': 'tab faded'" href="#/" ng-click="changeTab('all')">
           All
           <div class="active" ng-show="currentTab === 'all'"></div>
         </a>
-        <a class="tab" href="#/personal" ng-click="changeTab('personal')">
+        <a ng-class="currentTab === 'personal' ? 'tab': 'tab faded'" href="#/personal" ng-click="changeTab('personal')">
           Personal
           <div class="active" ng-show="currentTab === 'personal'"></div>
         </a>
