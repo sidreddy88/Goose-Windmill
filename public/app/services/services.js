@@ -33,21 +33,26 @@ angular.module('hack.services', [])
   };
 
   var getPersonalStories = function(usernames){
-    var query = 'http://hn.algolia.com/api/v1/search_by_date?hitsPerPage=500&tagFilters=story,(';
+    var query = 'http://hn.algolia.com/api/v1/search_by_date?hitsPerPage=500&tagFilters=(story,comment),(';
     var userQuery = [];
 
     for(var i = 0; i < usernames.length; i++){
       userQuery.push('author_' + usernames[i]);
     }
 
-    query += userQuery.join(',');
-    query += ')';
+    query += userQuery.join(',') + ')';
 
     return $http({
       method: 'GET',
       url: query
     })
     .then(function(resp) {
+      angular.forEach(resp.data.hits, function(item){
+        if(item.title === null){
+          item.isComment = true;
+        }
+      });
+
       personalStories.splice(0, personalStories.length);
       personalStories.push.apply(personalStories, resp.data.hits);
     });

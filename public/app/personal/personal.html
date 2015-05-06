@@ -1,18 +1,34 @@
-<div>
+<div class="personal-container">
   <div class="story" ng-repeat="story in stories | limitTo: index">
-    <div class="points-bar" style="width:{{125 * story.points/400 + 2}}px;"></div>
-    <a class="story-title" href="{{story.url}}">{{story.title}}</a>
-    <span class="source-url">{{story.url.split('/')[2]}}</span>
 
-    <div class="bottom-row">
-      <span>{{story.points}} points</span> | 
-      <a href="https://news.ycombinator.com/user?id={{story.author}}">{{story.author}}</a> |
-      <span>{{story.created_at | fromNow}}</span> |
-      <a href="https://news.ycombinator.com/item?id={{story.objectID}}">
-        {{story.num_comments ? story.num_comments + ' comments' : 'discuss'}}
-      </a>
+    <!-- uses this if item is a story -->
+    <div ng-show="story.isComment === undefined">
+      <div class="points-bar" style="width:{{125 * story.points/400 + 2}}px;"></div>
+      <a class="story-title" href="{{story.url}}">{{story.title}}</a>
+      <span class="source-url">{{story.url.split('/')[2]}}</span>
+
+      <div class="bottom-row">
+        <span>{{story.points}} points</span> | 
+        <a href="https://news.ycombinator.com/user?id={{story.author}}">{{story.author}}</a> |
+        <span>{{story.created_at | fromNow}}</span> |
+        <a href="https://news.ycombinator.com/item?id={{story.objectID}}">
+          {{story.num_comments ? story.num_comments + ' comments' : 'discuss'}}
+        </a>
+      </div>
+    </div>
+
+    <!-- uses this if item is a comment -->
+    <div class="comment" ng-show="story.isComment">
+      <div class="top-row">
+        <a href="https://news.ycombinator.com/user?id={{story.author}}">{{story.author}}</a>
+        <span>{{story.created_at | fromNow}}</span> |
+        <a href="https://news.ycombinator.com/item?id={{story.parent_id}}">parent</a> |
+        on: <a href="https://news.ycombinator.com/item?id={{story.story_id}}">{{story.story_title}}</a>
+      </div>
+      <div ng-bind-html="story.comment_text | htmlsafe">
+      </div>
     </div>
   </div>
 </div>
 
-<div ng-show="index < stories.length" ng-click="index = index + 30;">more</div>
+<div class="more-button" ng-show="index < stories.length" ng-click="index = index + 30;">more</div>

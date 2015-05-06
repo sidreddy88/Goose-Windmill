@@ -23,7 +23,10 @@ a{
   float: left;
   position: fixed;
   background: #404040;
+}
 
+.personal-container {
+  margin-top: -30px;
 }
 
 .tabs{
@@ -33,12 +36,12 @@ a{
 
 .tab {
   display: block;
-  padding-top: 20px;
-  padding-bottom: 40px;
+  padding-top: 25px;
+  padding-bottom: 30px;
   height: 50px;
   padding-left: 100px;
   text-decoration: none;
-  font-size: 50px;
+  font-size: 40px;
   letter-spacing: -3px;
   font-weight: bold;
   position: relative;
@@ -54,17 +57,18 @@ a{
   margin: 0;
   color: white;
   margin-left: 95px;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 
 .following-header {
   color: white;
   text-align: center;
-  margin-top: 270px;
+  margin-top: 190px;
+  margin-left: 20px;
   position: absolute;
   transform: rotate(-90deg);
   transform-origin: left top 0;
-  font-size: 50px;
+  font-size: 40px;
   letter-spacing: -3px;
 }
 
@@ -86,18 +90,30 @@ a{
 }
 
 .story{
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   position: relative;
 }
 
+.comment {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 25px;
+  margin-right: 150px;
+  background: rgb(244,244,244) ;
+  border-radius: 2px;
+}
+
 .followed-user {
-  padding: 10px;
+  padding: 7px;
+  padding-top: 3px;
+  padding-bottom: 3px;
   float: left;
   cursor: pointer;
-  margin-right: 10px;
-  margin-bottom: 10px;
+  margin-right: 5px;
+  margin-bottom: 5px;
   color: black;
   background: white;
+  opacity: 0.9;
 }
 
 .followed-user:hover {
@@ -105,15 +121,20 @@ a{
 }
 
 .story-title {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 600;
   font-family: 'open sans';
 }
 
 .bottom-row {
   /*color: grey;*/
-  opacity: 0.5;
+  opacity: 0.4;
   font-size: 13px;
+}
+
+.top-row {
+  margin-bottom: 20px;
+  opacity: 0.35;
 }
 
 .points-bar {
@@ -141,6 +162,30 @@ a{
 }
 
 .source-url {
-  opacity: 0.3;
+  opacity: 0.4;
   font-size: 13px;
+}
+
+.more-button {
+  display: block;
+  margin-top: 40px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-right: 150px;
+  text-align: center;
+  /*background: #e8e8e8;*/
+  border-top: 4px solid black;
+  border-left: 4px solid black;
+  border-right: 4px solid black;
+  cursor: pointer;
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: -3px;
+  opacity: 0.55;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.more-button:hover {
+  opacity: 1;
+  text-decoration: underline;
 }
