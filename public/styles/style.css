@@ -26,7 +26,7 @@ a{
 }
 
 .personal-container {
-  margin-top: -30px;
+  margin-top: -20px;
 }
 
 .tabs{
@@ -47,9 +47,7 @@ a{
   position: relative;
   color: #303030;
 }
-.tab:hover{
-  background: #F0F0F0;
-}
+
 
 .currently-following{
   width: 305px;
@@ -86,6 +84,7 @@ a{
 .feed {
   float: left;
   margin-left: 545px;
+  margin-left: 580px;
   margin-top: 30px;
 }
 
@@ -100,6 +99,7 @@ a{
   padding: 25px;
   margin-right: 150px;
   background: rgb(244,244,244) ;
+  background: #E8E8E8;
   border-radius: 2px;
 }
 
@@ -156,7 +156,7 @@ a{
   border-bottom: 10px solid transparent;
   border-left: 10px solid #585858;
 
-  right: 5px;
+  right: -5px;
   position: absolute;
   top: 38px;
 }
@@ -188,4 +188,12 @@ a{
 .more-button:hover {
   opacity: 1;
   text-decoration: underline;
+}
+
+.faded {
+  background: #E8E8E8;
+  opacity: 0.4;
+}
+.faded:hover{
+  opacity: 1;
 }
