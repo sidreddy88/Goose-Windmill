@@ -37,6 +37,10 @@ angular.module('hack.topStories', [])
   $scope.addUser = function(username) {
     Followers.addFollower(username);
   };
+
+  $scope.addUser2 = function(username) {
+    Followers.addFollower2(username);
+  };
 });
 
 

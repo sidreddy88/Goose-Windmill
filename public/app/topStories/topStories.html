@@ -1,11 +1,11 @@
-<div>
+<div ng-controller="TopStoriesController">
   <div class="userDisplay story" ng-repeat="story in stories">
     <div class="points-bar" style="width:{{125 * story.points/400 + 2}}px;"></div>
     <a class="story-title" href="{{story.url}}">{{story.title}}</a>
     <span class="source-url">{{story.url.split('/')[2]}}</span>
     <div class="bottom-row">
       <span>{{story.points}} points</span> | 
-      <button ng-click="addUser(story.author)">Follow</button>
+      <button ng-click="addUser(story.author)">Follow</button><button ng-click="addUser2(story.author)">Follow2</button>
       <a href="https://news.ycombinator.com/user?id={{story.author}}">{{ story.author}}</a> |
       <span>{{story.created_at | fromNow}}</span> |
       <a href="https://news.ycombinator.com/item?id={{story.objectID}}">
