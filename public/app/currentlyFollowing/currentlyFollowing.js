@@ -9,5 +9,6 @@ angular.module('hack.currentlyFollowing', [])
 
   $scope.follow = function(user){
     Followers.addFollower(user);
+    $scope.newFollow = "";
   };
 });
