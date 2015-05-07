@@ -15,7 +15,7 @@ angular.module('hack.services', [])
 
   var getStories = function(ids) { //ids is array of story ids
 
-    var url = 'http://hn.algolia.com/api/v1/search?hitsPerPage=30&tagFilters=story,('
+    var url = 'http://hn.algolia.com/api/v1/search?hitsPerPage=500&tagFilters=story,('
     var storyQuery = [];
 
     for(var i = 0; i < ids.length; i++) {

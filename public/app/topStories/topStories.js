@@ -4,9 +4,14 @@ angular.module('hack.topStories', [])
   angular.extend($scope, Links);
   $scope.storyIds = {};
   $scope.stories = {};
+  $scope.index = 30;
+
+  $scope.currentlyFollowing = Followers.following;
+
   $scope.getData = function() {
     Links.getStoryIds().then(function(data) {
-      $scope.storyIds = data.slice(0, 30);
+      // $scope.storyIds = data.slice(0, 30);
+      $scope.storyIds = data;
       Links.getStories($scope.storyIds).then(function(data) {
         $scope.stories = [];
         var index;
@@ -15,6 +20,7 @@ angular.module('hack.topStories', [])
         });
 
         //Map stories data according to storyIds sort
+        console.log($scope.storyIds.length);
         for(var i = 0; i < $scope.storyIds.length; i++) {
           index = indexMap.indexOf(String($scope.storyIds[i]));
           var item = data.hits[index];
@@ -23,6 +29,7 @@ angular.module('hack.topStories', [])
             $scope.stories.push(data.hits[index]);
           }
         }
+
       }).catch(function(error) {
         console.error(error);
       })
