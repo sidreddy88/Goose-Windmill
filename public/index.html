@@ -23,6 +23,10 @@
 
       <h2 class="following-header">Following</h2>
       <div class="currently-following" ng-controller="CurrentlyFollowingController">
+        <div class="new-follow">
+          <input type="text" ng-model="newFollow" placeholder="username">
+          <button ng-click="follow(newFollow)">follow</button> 
+        </div>
         <div class="followed-user" ng-repeat="user in currentlyFollowing">
           {{user}}   <span ng-click="unfollow(user);">x</span>
         </div>

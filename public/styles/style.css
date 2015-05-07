@@ -197,3 +197,7 @@ a{
 .faded:hover{
   opacity: 1;
 }
+
+.new-follow {
+  margin-bottom: 10px;
+}
