@@ -22,7 +22,7 @@ var UserSchema = mongoose.Schema({
 var User = mongoose.model('users', UserSchema);
 
 User.prototype.createUser = function (params){
-  console.log('PARAMS FROM USER.MODEL.SIGNUP'+JSON.stringify(params));
+  console.log('PARAMS FROM USER.MODEL.createUser'+JSON.stringify(params));
   
   var newUser = new User({
       username: params.username,
@@ -50,8 +50,25 @@ User.prototype.signin = function (username, password, callback){
       //if not correct, do stuff w/ error
       callback('Username not found', null);
     }
+  });  
+};
+
+User.prototype.updateFollowing = function (username, following, callback){
+  // console.log('PARAMS FROM USER.MODEL.follow'+JSON.stringify(params));
+  console.log(username, following);
+  // User.findOne({username: username}, {$set: {following: following}}, { "multi": false },function(err, result){
+  //   console.log("updateFollowing: ", err, result);
+  //   callback(err);
+  // });
+
+  //Look up user entry with 
+  User.findOne({username: username}, function(err, user) {
+    console.log("updateFollowing: ", err, user);
+    user.following = following;
+    user.save();
+    callback(err);
   });
-}
+};
 
 
 
