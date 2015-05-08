@@ -49,7 +49,7 @@ angular.module('hack.services', [])
     $interval(function(){
       getPersonalStories(Followers.following);
       getTopStories();
-    }, 120000);
+    }, 300000);
   };
 
   init();

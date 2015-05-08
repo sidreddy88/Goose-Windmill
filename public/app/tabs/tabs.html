@@ -1,10 +1,14 @@
 <div class="tabs" ng-controller="TabsController">
   <a ng-class="currentTab === 'all' ? 'tab': 'tab faded'" href="#/" ng-click="changeTab('all')">
     All
-    <div class="active" ng-show="currentTab === 'all'"></div>
+    <div class="active" ng-show="currentTab === 'all'">
+      <div class="refresh" degrees="angle" rotate ng-click="refresh()"></div>
+    </div>
   </a>
   <a ng-class="currentTab === 'personal' ? 'tab': 'tab faded'" href="#/personal" ng-click="changeTab('personal')">
     Personal
-    <div class="active" ng-show="currentTab === 'personal'"></div>
+    <div class="active" ng-show="currentTab === 'personal'">
+      <div class="refresh" degrees="angle" rotate ng-click="refresh()"></div>
+    </div>
   </a>
 </div>
