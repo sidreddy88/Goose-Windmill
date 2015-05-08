@@ -1,21 +1,10 @@
 angular.module('hack.services', [])
 
-.factory('Links', function($http, $interval) {
+.factory('Links', function($http, $interval, Followers) {
   var personalStories = [];
   var topStories = [];
 
-  var getStoryIds = function() {
-    return $http({
-      method: 'GET',
-      url: 'https://hacker-news.firebaseio.com/v0/topstories.json'
-    })
-    .then(function(resp) {
-      return resp.data;
-    });
-  };
-
-  var getTopStories = function(ids) { //ids is array of story ids
-
+  var getTopStories = function() {
     var url = '/api/cache/topStories'
 
     return $http({
@@ -23,7 +12,6 @@ angular.module('hack.services', [])
       url: url
     })
     .then(function(resp) {
-      console.log(resp);
       topStories.splice(0, topStories.length);
       topStories.push.apply(topStories, resp.data);
     });
@@ -55,14 +43,20 @@ angular.module('hack.services', [])
     });
   };
 
+  var init = function(){
+    getPersonalStories(Followers.following);
+  };
+
+  init();
+
   return {
-    getStoryIds: getStoryIds,
     getTopStories: getTopStories,
     getPersonalStories: getPersonalStories,
     personalStories: personalStories,
     topStories: topStories
   };
 })
+
 .factory('Followers',  function($http, $window) {
   var following = [];
 
