@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Promise = require('bluebird');
+var bcrypt = require('bcrypt-nodejs');
 
 var UserSchema = mongoose.Schema({
   username: {
@@ -8,11 +9,10 @@ var UserSchema = mongoose.Schema({
     unique: true
   },
 
-  password: {
+  hashword: {
     type: String,
     required: true
   },
-  salt: String, 
   following: {
     type: String,
     required: true
@@ -23,17 +23,24 @@ var User = mongoose.model('users', UserSchema);
 
 User.prototype.createUser = function (params, callback){
   // console.log('PARAMS FROM USER.MODEL.createUser'+JSON.stringify(params));
-  
-  var newUser = new User({
-      username: params.username,
-      password: params.password,
-      following: params.following
-    });
+  bcrypt.hash(params.password, null, null, function(err, hash){
+    if(hash) {
+      var newUser = new User({
+        username: params.username,
+        hashword: hash,
+        following: params.following
+      });
 
-  newUser.save(function(err,results){
-    // console.log("mongoose.save: ", err, results);
-    callback(err, results);
+      newUser.save(function(err,results){
+        // console.log("mongoose.save: ", err, results);
+        callback(err, results);
+      });  
+    } else {
+      callback(err);
+    }
   });
+
+  
 };
 
 User.prototype.signin = function (username, password, callback){
