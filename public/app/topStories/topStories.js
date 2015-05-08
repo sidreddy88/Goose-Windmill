@@ -11,11 +11,10 @@ angular.module('hack.topStories', [])
     Links.getTopStories();
   };
   
-  $scope.getData();
-
   $scope.addUser = function(username) {
     Followers.addFollower(username);
   };
 
+  $scope.getData();
 });
 
