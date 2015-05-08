@@ -1,7 +1,5 @@
-var express  = require('express'),
-    mongoose = require('mongoose'),
-    util     = require('util'),
-    fs       = require('fs');
+var express  = require('express');
+var mongoose = require('mongoose');
 
 var app = express();
 
@@ -19,13 +17,10 @@ mongoose.connect(uristring, {}, function (err, res) {
   }
 });
 
-var models_path = __dirname + '/models';
-fs.readdirSync(models_path).forEach(function(file) {
-  util.puts('load model ' + file);
-    require(models_path + '/' + file);
-}); 
-// ------ End of mongoose connection -------
-
 require('./config/middleware.js')(app, express);
+
+// app.listen(3000, function(){
+//   console.log("Listening on 3000");
+// });
 
 module.exports = app;
