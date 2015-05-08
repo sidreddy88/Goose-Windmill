@@ -7,92 +7,18 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
   </head>
   <body>
-  
 
+    <!-- things on the left of screen -->
     <div class="left-container">
-
-      <!-- tabs -->
-      <div class="tabs" ng-controller="TabsController">
-        <!-- <h1 class="tab-header">Feed</h1> -->
-        <a ng-class="currentTab === 'all' ? 'tab': 'tab faded'" href="#/" ng-click="changeTab('all')">
-          All
-          <div class="active" ng-show="currentTab === 'all'"></div>
-        </a>
-        <a ng-class="currentTab === 'personal' ? 'tab': 'tab faded'" href="#/personal" ng-click="changeTab('personal')">
-          Personal
-          <div class="active" ng-show="currentTab === 'personal'"></div>
-        </a>
-      </div>
-
-      <!-- currently following -->
-      <div class="currently-following" ng-controller="CurrentlyFollowingController">
-        <h2 class="following-header">Following</h2>
-        <div class="new-follow">
-          <input type="text" ng-model="newFollow" placeholder="username">
-          <button ng-click="follow(newFollow)">follow</button> 
-        </div>
-        <div class="followed-user" ng-repeat="user in currentlyFollowing">
-          {{user}}   <span ng-click="unfollow(user);">x</span>
-        </div>
-      </div>
-
-      <!-- signin/signout -->
-      <div class="auth-container" ng-controller="AuthController">
-        <div ng-show="!loggedIn">
-          <h1 class="auth-header">HN Feed</h1>
-          <p class="auth-info">Sign up to save your followers</p>
-          <div id='signin'>
-            <!-- <h4>signin</h4> -->
-            <form name="signinForm" ng-submit='signin()'>
-              <div>
-                <input type='text'ng-model='user.username' placeholder="username" required>
-              </div>
-              <input 
-                   ng-model='user.password' 
-                   type="password" 
-                   name="password" 
-                   ng-minlength="3"
-                   placeholder="password"
-                   required 
-                   >
-              <!-- <span ng-show="signinForm.password.$error.required">Required</span>
-              <span ng-show="signinForm.password.$error.minlength">Required</span> -->
-              <button>login</button>
-            </form>
-          </div>
-
-          <div id='signup'>
-            <!-- <h4>signup</h4> -->
-            <form name="signupForm" ng-submit='signup()'>
-              <input type='text'ng-model='newUser.username' placeholder="username" required><br>
-              <input 
-                   ng-model='newUser.password' 
-                   type="password"
-                   name="password"
-                   required 
-                   ng-minlength="3"
-                   placeholder="password"
-                   >
-              <!-- <span ng-show="signupForm.password.$error.required">Required</span> -->
-              <!-- <span ng-show="signupForm.password.$error.minlength">Too short</span> -->
-              <button>create account</button>
-            </form>
-          </div>
-        </div>
-        <div ng-show="loggedIn">
-          <h1 class="logged-header">HN Feed</h1>
-          <button ng-click="logout()">logout</button>
-        </div>
-      </div>
-
+      <div ng-include="'app/tabs/tabs.html'"></div>
+      <div ng-include="'app/currentlyFollowing/currentlyFollowing.html'"></div>
+      <div ng-include="'app/auth/auth.html'"></div>
     </div>
 
     <!-- the ng-view directive is where our templates will be loaded into when navigated to -->
     <div class="feed">
       <div ng-view></div>
     </div>
-
-    <!-- <h1 class="hero-header">Hacker Feed</h1> -->
 
     <script src="lib/angular.js"></script>
     <script src="lib/angular-route.min.js"></script>
