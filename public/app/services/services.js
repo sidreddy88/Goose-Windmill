@@ -68,6 +68,23 @@ angular.module('hack.services', [])
 .factory('Followers',  function($http, $window) {
   var following = [];
 
+  var updateFollowing = function(){
+    var user = $window.localStorage.getItem('com.hack');
+    
+    if(!!user){
+      var data = {
+        username: user,
+        following: localStorageUsers()
+      };
+
+      $http({
+        method: 'POST',
+        url: '/api/users/updateFollowing',
+        data: data
+      });
+    }
+  };
+
   var addFollower = function(username){
     var localFollowing = localStorageUsers();
 
@@ -76,6 +93,8 @@ angular.module('hack.services', [])
       $window.localStorage.setItem('hfUsers', localFollowing);
       following.push(username);
     }
+
+    updateFollowing();
   };
 
   var removeFollower = function(username){
@@ -88,22 +107,27 @@ angular.module('hack.services', [])
       localFollowing.splice(localFollowing.indexOf(username), 1).join(',');
       $window.localStorage.setItem('hfUsers', localFollowing);
     }
+
+    updateFollowing();
   };
 
   var localStorageUsers = function(){
     return $window.localStorage.getItem('hfUsers');
   }
 
-  var init = function(){
+  var localToArr = function(){
     if(!localStorageUsers()){
       $window.localStorage.setItem('hfUsers', 'pg');
     }
 
     var users = localStorageUsers().split(',');
 
-    for(var i = 0; i < users.length; i++){
-      following.push(users[i]);
-    }
+    following.splice(0, following.length);
+    following.push.apply(following, users);
+  }
+
+  var init = function(){
+    localToArr();
   };
 
   init();
@@ -111,6 +135,47 @@ angular.module('hack.services', [])
   return {
     following: following,
     addFollower: addFollower,
-    removeFollower: removeFollower
+    removeFollower: removeFollower,
+    localToArr: localToArr
   }
+})
+
+.factory('Auth', function ($http, $location, $window) {
+  var signin = function (user) {
+    return $http({
+      method: 'POST',
+      url: '/api/users/signin',
+      data: user
+    })
+    .then(function (resp) {
+      return resp.data;
+    });
+  };
+
+  var signup = function (user) {
+    return $http({
+      method: 'POST',
+      url: '/api/users/signup',
+      data: user
+    })
+    .then(function (resp) {
+      return resp.data;
+    });
+  };
+
+  var isAuth = function () {
+    return !!$window.localStorage.getItem('com.hack');
+  };
+
+  var signout = function () {
+    $window.localStorage.removeItem('com.hack');
+  };
+
+
+  return {
+    signin: signin,
+    signup: signup,
+    isAuth: isAuth,
+    signout: signout
+  };
 });
