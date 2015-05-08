@@ -26,10 +26,10 @@ module.exports = {
     //perform request
     request(options, function(error, response, html){
       var data = JSON.parse(response.body);
-      var storyOrder = data.slice(0, 30);
+      var storyOrder = data;
 
       //Generate api url
-      var storyUrl = 'http://hn.algolia.com/api/v1/search?hitsPerPage=30&tagFilters=story,(';
+      var storyUrl = 'http://hn.algolia.com/api/v1/search?hitsPerPage=500&tagFilters=story,(';
       var storyUrlIds = [];
       for(var i = 0; i < storyOrder.length; i++) {
         storyUrlIds.push('story_' + storyOrder[i]);
@@ -51,9 +51,14 @@ module.exports = {
         //storyOrder matches hacker news front page. Find data related to the story ID
         //in the incoming response data
         for(var i = 0; i < storyOrder.length; i++) {
-            index = indexMap.indexOf(String(storyOrder[i]));
+          index = indexMap.indexOf(String(storyOrder[i]));
+
+          var item = data.hits[index];
+
+          if(item){
             topStories.push(data.hits[index]);
           }
+        }
         console.log("Top Stories Updated");
       });
     });
