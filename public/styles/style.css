@@ -255,3 +255,11 @@ a{
   margin: 0;
   margin-bottom: 25px;
 }
+
+.logged-header {
+  color: black;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 40px;
+  letter-spacing: -2px;
+}

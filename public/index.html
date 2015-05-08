@@ -37,47 +37,54 @@
       </div>
 
       <!-- signin/signout -->
-      <div ng-show="!loggedIn" class="auth-container" ng-controller="AuthController">
-        <h1 class="auth-header">HN Feed</h1>
-        <p class="auth-info">Sign up to save your followers</p>
-        <div id='signin'>
-          <!-- <h4>signin</h4> -->
-          <form name="signinForm" ng-submit='signin()'>
-            <div>
-              <input type='text'ng-model='user.username' placeholder="username" required>
-            </div>
-            <input 
-                 type="password" 
-                 name="password" 
-                 ng-model='user.password' 
-                 ng-minlength="5"
-                 placeholder="password"
-                 required 
-                 >
-            <!-- <span ng-show="signinForm.password.$error.required">Required</span>
-            <span ng-show="signinForm.password.$error.minlength">Required</span> -->
-            <button>login</button>
-          </form>
-        </div>
+      <div class="auth-container" ng-controller="AuthController">
+        <div ng-show="!loggedIn">
+          <h1 class="auth-header">HN Feed</h1>
+          <p class="auth-info">Sign up to save your followers</p>
+          <div id='signin'>
+            <!-- <h4>signin</h4> -->
+            <form name="signinForm" ng-submit='signin()'>
+              <div>
+                <input type='text'ng-model='user.username' placeholder="username" required>
+              </div>
+              <input 
+                   ng-model='user.password' 
+                   type="password" 
+                   name="password" 
+                   ng-minlength="3"
+                   placeholder="password"
+                   required 
+                   >
+              <!-- <span ng-show="signinForm.password.$error.required">Required</span>
+              <span ng-show="signinForm.password.$error.minlength">Required</span> -->
+              <button>login</button>
+            </form>
+          </div>
 
-        <div id='signup'>
-          <!-- <h4>signup</h4> -->
-          <form name="signupForm" ng-submit='signup()'>
-            <input type='text'ng-model='newUser.username' placeholder="username" required><br>
-            <input 
-                 type="password" 
-                 name="password"
-                 ng-model='newUser.password' 
-                 required 
-                 ng-minlength="5"
-                 placeholder="password"
-                 >
-            <!-- <span ng-show="signupForm.password.$error.required">Required</span> -->
-            <!-- <span ng-show="signupForm.password.$error.minlength">Too short</span> -->
-            <button>create account</button>
-          </form>
+          <div id='signup'>
+            <!-- <h4>signup</h4> -->
+            <form name="signupForm" ng-submit='signup()'>
+              <input type='text'ng-model='newUser.username' placeholder="username" required><br>
+              <input 
+                   ng-model='newUser.password' 
+                   type="password"
+                   name="password"
+                   required 
+                   ng-minlength="3"
+                   placeholder="password"
+                   >
+              <!-- <span ng-show="signupForm.password.$error.required">Required</span> -->
+              <!-- <span ng-show="signupForm.password.$error.minlength">Too short</span> -->
+              <button>create account</button>
+            </form>
+          </div>
+        </div>
+        <div ng-show="loggedIn">
+          <h1 class="logged-header">HN Feed</h1>
+          <button ng-click="logout()">logout</button>
         </div>
       </div>
+
     </div>
 
     <!-- the ng-view directive is where our templates will be loaded into when navigated to -->
