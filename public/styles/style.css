@@ -265,9 +265,32 @@ button {
 }
 
 .logged-header {
-  color: black;
   margin-top: 0;
   margin-bottom: 15px;
   font-size: 40px;
   letter-spacing: -2px;
+  color: #404040;
+}
+
+.refresh {
+  position: absolute;
+  left: -75px;
+  top: -18px;
+  width: 40px;
+  height: 40px;
+  background: url(http://www.netballsl.com/uploads/3/1/6/5/31654345/6195073.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 50%;
+  opacity: 0.15;
+
+  -webkit-transition: all 350ms ease-out;
+  -moz-transition: all 350ms ease-out;
+  -o-transition: all 350ms ease-out;
+  -ms-transition: all 350ms ease-out;
+  transition: all 350ms ease-out;
+}
+
+.refresh:hover {
+  opacity: 0.7;
 }
