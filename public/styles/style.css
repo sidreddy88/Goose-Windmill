@@ -23,10 +23,23 @@ a{
   float: left;
   position: fixed;
   background: #404040;
+  color: white;
 }
 
 .personal-container {
   margin-top: -20px;
+}
+
+.auth-container {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding-left: 100px;
+  padding-top: 25px;
+  padding-bottom: 20px;
+  width: 300px;
+  background: #FFA500;
+  background: #FF8C00;
 }
 
 .tabs{
@@ -39,7 +52,7 @@ a{
   padding-top: 25px;
   padding-bottom: 30px;
   height: 50px;
-  padding-left: 100px;
+  padding-left: 93px;
   text-decoration: none;
   font-size: 40px;
   letter-spacing: -3px;
@@ -51,7 +64,7 @@ a{
 
 .currently-following{
   width: 305px;
-  height: 100%;
+  /*height: 100%;*/
   margin: 0;
   color: white;
   margin-left: 95px;
@@ -61,13 +74,42 @@ a{
 .following-header {
   color: white;
   text-align: center;
-  margin-top: 190px;
-  margin-left: 20px;
+  margin-top: 160px;
+  /*top: 400px;*/
+  left: 20px;
   position: absolute;
   transform: rotate(-90deg);
   transform-origin: left top 0;
   font-size: 40px;
   letter-spacing: -3px;
+}
+
+.auth-header {
+  color: black;
+  text-align: center;
+  left: 20px;
+  bottom: -30px;
+  margin: 0;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -2px;
+  text-align: center;
+}
+
+.tab-header {
+  color: black;
+  text-align: center;
+  top: 150px;
+  left: 10px;
+  margin: 0;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -2px;
+  z-index: 200;
 }
 
 .hero-header {
@@ -113,7 +155,8 @@ a{
   margin-bottom: 5px;
   color: black;
   background: white;
-  opacity: 0.9;
+  opacity: 0.8;
+  font-size: 14px;
 }
 
 .followed-user:hover {
@@ -135,6 +178,7 @@ a{
 .top-row {
   margin-bottom: 20px;
   opacity: 0.35;
+  font-size: 14px;
 }
 
 .points-bar {
@@ -200,4 +244,14 @@ a{
 
 .new-follow {
   margin-bottom: 10px;
+}
+
+#signin {
+  margin-bottom: 25px;
+}
+
+.auth-info {
+  font-size: 15px;
+  margin: 0;
+  margin-bottom: 25px;
 }

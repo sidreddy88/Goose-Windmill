@@ -4,6 +4,7 @@ angular.module('hack', [
   'hack.currentlyFollowing',
   'hack.services',
   'hack.tabs',
+  'hack.auth',
   'ngRoute'
 ])
 
