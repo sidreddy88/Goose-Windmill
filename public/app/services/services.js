@@ -49,7 +49,6 @@ angular.module('hack.services', [])
     $interval(function(){
       getPersonalStories(Followers.following);
       getTopStories();
-      console.log('hi kenny');
     }, 120000);
   };
 
