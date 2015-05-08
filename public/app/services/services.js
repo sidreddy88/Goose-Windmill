@@ -2,6 +2,7 @@ angular.module('hack.services', [])
 
 .factory('Links', function($http, $interval) {
   var personalStories = [];
+  var topStories = [];
 
   var getStoryIds = function() {
     return $http({
@@ -13,22 +14,18 @@ angular.module('hack.services', [])
     });
   };
 
-  var getStories = function(ids) { //ids is array of story ids
+  var getTopStories = function(ids) { //ids is array of story ids
 
-    var url = 'http://hn.algolia.com/api/v1/search?hitsPerPage=500&tagFilters=story,('
-    var storyQuery = [];
-
-    for(var i = 0; i < ids.length; i++) {
-      storyQuery.push('story_' + ids[i]);
-    }
-    url += storyQuery.join(',') + ')';
+    var url = '/api/cache/topStories'
 
     return $http({
       method: 'GET',
       url: url
     })
     .then(function(resp) {
-      return resp.data;
+      console.log(resp);
+      topStories.splice(0, topStories.length);
+      topStories.push.apply(topStories, resp.data);
     });
   };
 
@@ -60,9 +57,10 @@ angular.module('hack.services', [])
 
   return {
     getStoryIds: getStoryIds,
-    getStories: getStories,
+    getTopStories: getTopStories,
     getPersonalStories: getPersonalStories,
-    personalStories: personalStories
+    personalStories: personalStories,
+    topStories: topStories
   };
 })
 .factory('Followers',  function($http, $window) {
@@ -70,7 +68,7 @@ angular.module('hack.services', [])
 
   var updateFollowing = function(){
     var user = $window.localStorage.getItem('com.hack');
-    
+
     if(!!user){
       var data = {
         username: user,
