@@ -39,8 +39,6 @@ User.prototype.createUser = function (params, callback){
       callback(err);
     }
   });
-
-  
 };
 
 User.prototype.signin = function (username, password, callback){
@@ -50,12 +48,14 @@ User.prototype.signin = function (username, password, callback){
     // console.log(err, JSON.stringify(user));
     if(user){
       //if correct, return following
-      if(user.password === password) {
-        callback(null, user.following);
-      } else {
-        //if not correct, do stuff w/ error
-        callback('Incorrect password', null);
-      }
+      bcrypt.compare(password, user.hashword, function(err, res) {
+        if (res) {
+          callback(null, user.following);  
+        } else {
+          //if not correct, do stuff w/ error
+          callback('Incorrect password', null);  
+        }
+      });
     } else {
       //if not correct, do stuff w/ error
       callback('Username not found', null);
@@ -74,7 +74,5 @@ User.prototype.updateFollowing = function (username, following, callback){
     callback(err);
   });
 };
-
-
 
 module.exports = User;
