@@ -36,5 +36,20 @@ module.exports = {
         response.status(400).send(err);
       }
     })
+  },
+
+  updateFollowing: function(request, response, next) {
+    var username = request.body.username;
+    var following = request.body.following;
+
+    User.prototype.updateFollowing(username, following, function(err, results){
+      if(!err){
+        console.log('User following data updated');
+        response.status(200).end();
+      } else {
+        console.log('User following data update ERROR');
+        response.status(400).send(err);
+      }
+    });
   }
-}
+};
