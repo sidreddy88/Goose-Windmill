@@ -2,7 +2,7 @@ var User = require('./userModel.js');
 
 module.exports = {
   signup: function(request, response, next) {
-    console.log('hello world from userController');
+
     //console.log('REQUEST.BODY: '+JSON.stringify(request.body));
     var username = request.body.username;
     var password = request.body.password;
@@ -14,13 +14,22 @@ module.exports = {
       following: following
     };
 
-    User.prototype.createUser(params, function(err, results){
-      if(!err){
-        response.status(200).send("Signed up");
+    User.findOne({username: username}, function(err, user) {
+      //console.log("signup log: ", err, user);
+      //User already exists, try again!
+      if(user) {
+        //Figure out a way to tell client to redirect to signup
+        response.status(400).send('Figure this out Kenny');
       } else {
-        response.status(400).send("Bad data");
+        User.prototype.createUser(params, function(err){
+          if(!err){
+            response.status(200).send("Signed up");
+          } else {
+            response.status(400).send("Bad data");
+          }
+        });
       }
-    })
+    });    
   },
 
   signin: function(request, response, next) {

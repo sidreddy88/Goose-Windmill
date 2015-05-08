@@ -21,8 +21,8 @@ var UserSchema = mongoose.Schema({
 
 var User = mongoose.model('users', UserSchema);
 
-User.prototype.createUser = function (params){
-  console.log('PARAMS FROM USER.MODEL.createUser'+JSON.stringify(params));
+User.prototype.createUser = function (params, callback){
+  // console.log('PARAMS FROM USER.MODEL.createUser'+JSON.stringify(params));
   
   var newUser = new User({
       username: params.username,
@@ -30,14 +30,17 @@ User.prototype.createUser = function (params){
       following: params.following
     });
 
-  newUser.save();
+  newUser.save(function(err,results){
+    // console.log("mongoose.save: ", err, results);
+    callback(err, results);
+  });
 };
 
 User.prototype.signin = function (username, password, callback){
   //find if user exists
   User.findOne({'username':username},function(err,user){
     //if exists, compare password
-    console.log(err, JSON.stringify(user));
+    // console.log(err, JSON.stringify(user));
     if(user){
       //if correct, return following
       if(user.password === password) {
@@ -54,16 +57,11 @@ User.prototype.signin = function (username, password, callback){
 };
 
 User.prototype.updateFollowing = function (username, following, callback){
-  // console.log('PARAMS FROM USER.MODEL.follow'+JSON.stringify(params));
-  console.log(username, following);
-  // User.findOne({username: username}, {$set: {following: following}}, { "multi": false },function(err, result){
-  //   console.log("updateFollowing: ", err, result);
-  //   callback(err);
-  // });
+  // console.log(username, following);
 
   //Look up user entry with 
   User.findOne({username: username}, function(err, user) {
-    console.log("updateFollowing: ", err, user);
+    // console.log("updateFollowing: ", err, user);
     user.following = following;
     user.save();
     callback(err);
