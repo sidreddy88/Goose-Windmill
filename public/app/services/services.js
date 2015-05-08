@@ -109,7 +109,7 @@ angular.module('hack.services', [])
 
   var localToArr = function(){
     if(!localStorageUsers()){
-      $window.localStorage.setItem('hfUsers', 'pg');
+      $window.localStorage.setItem('hfUsers', 'pg,sama');
     }
 
     var users = localStorageUsers().split(',');
