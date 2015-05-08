@@ -190,7 +190,7 @@ button {
 }
 
 .points-bar {
-  background: #B0B0B0;
+  background: #D8D8D8;
   /*background: black;*/
   height: 8px;
   position: absolute;
@@ -226,16 +226,16 @@ button {
   margin-right: 150px;
   text-align: center;
   /*background: #e8e8e8;*/
-  border-top: 4px solid black;
-  border-left: 4px solid black;
-  border-right: 4px solid black;
+  border-top: 2px solid black;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
   cursor: pointer;
   font-size: 40px;
   font-weight: bold;
   letter-spacing: -3px;
   opacity: 0.55;
-  border-top-right-radius: 3px;
-  border-top-left-radius: 3px;
+  border-top-right-radius: 2px;
+  border-top-left-radius: 2px;
 }
 .more-button:hover {
   opacity: 1;

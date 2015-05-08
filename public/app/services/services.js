@@ -45,6 +45,12 @@ angular.module('hack.services', [])
 
   var init = function(){
     getPersonalStories(Followers.following);
+
+    $interval(function(){
+      getPersonalStories(Followers.following);
+      getTopStories();
+      console.log('hi kenny');
+    }, 120000);
   };
 
   init();
