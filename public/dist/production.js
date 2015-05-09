@@ -1,3 +1,215 @@
+angular.module('hack.authService', [])
+
+.factory('Auth', ["$http", "$location", "$window", function ($http, $location, $window) {
+  var signin = function (user) {
+    return $http({
+      method: 'POST',
+      url: '/api/users/signin',
+      data: user
+    })
+    .then(function (resp) {
+      return resp.data;
+    });
+  };
+
+  var signup = function (user) {
+    return $http({
+      method: 'POST',
+      url: '/api/users/signup',
+      data: user
+    })
+    .then(function (resp) {
+      return resp.data;
+    });
+  };
+
+  var isAuth = function () {
+    return !!$window.localStorage.getItem('com.hack');
+  };
+
+  var signout = function () {
+    $window.localStorage.removeItem('com.hack');
+  };
+
+
+  return {
+    signin: signin,
+    signup: signup,
+    isAuth: isAuth,
+    signout: signout
+  };
+}]);
+// HOW OUR FOLLOWING SYSTEM WORKS:
+// We want users to be able to follow people before they even
+// log in, because who actually has time to decide on a username/password?
+
+// So, we do this by saving the users that they follow into localStorage.
+
+angular.module('hack.followService', [])
+
+.factory('Followers',  ["$http", "$window", function($http, $window) {
+  var following = [];
+
+  var updateFollowing = function(){
+    var user = $window.localStorage.getItem('com.hack');
+
+    if(!!user){
+      var data = {
+        username: user,
+        following: localStorageUsers()
+      };
+
+      $http({
+        method: 'POST',
+        url: '/api/users/updateFollowing',
+        data: data
+      });
+    }
+  };
+
+  var addFollower = function(username){
+    var localFollowing = localStorageUsers();
+
+    if (!localFollowing.includes(username) && following.indexOf(username) === -1) {
+      localFollowing += ',' + username
+      $window.localStorage.setItem('hfUsers', localFollowing);
+      following.push(username);
+    }
+
+    updateFollowing();
+  };
+
+  var removeFollower = function(username){
+    var localFollowing = localStorageUsers();
+
+    if (localFollowing.includes(username) && following.indexOf(username) > -1) {
+      following.splice(following.indexOf(username), 1);
+
+      localFollowing = localFollowing.split(',');
+      localFollowing.splice(localFollowing.indexOf(username), 1).join(',');
+      $window.localStorage.setItem('hfUsers', localFollowing);
+    }
+
+    updateFollowing();
+  };
+
+  var localStorageUsers = function(){
+    return $window.localStorage.getItem('hfUsers');
+  }
+
+
+  // this function takes the csv in localStorage and turns it into an array.
+  // There are pointers pointing to the 'following' array. The 'following' array
+  // is how our controllers listen for changes and dynamically update the DOM.
+  // (because you can't listen to localStorage changes)
+  var localToArr = function(){
+    if(!localStorageUsers()){
+      // If the person is a new visitor, set pg and sama as the default
+      // people to follow. Kinda like Tom on MySpace. Except less creepy.
+      $window.localStorage.setItem('hfUsers', 'pg,sama');
+    }
+
+    var users = localStorageUsers().split(',');
+
+    following.splice(0, following.length);
+    following.push.apply(following, users);
+  }
+
+  var init = function(){
+    localToArr();
+  };
+
+  init();
+
+  return {
+    following: following,
+    addFollower: addFollower,
+    removeFollower: removeFollower,
+    localToArr: localToArr
+  }
+}])
+
+angular.module('hack.linkService', [])
+
+.factory('Links', ["$http", "$interval", "Followers", function($http, $interval, Followers) {
+  var personalStories = [];
+  var topStories = [];
+
+  var getTopStories = function() {
+    var url = '/api/cache/topStories'
+
+    return $http({
+      method: 'GET',
+      url: url
+    })
+    .then(function(resp) {
+
+      // Very important to not point topStories to a new array.
+      // Instead, clear out the array, then push all the new
+      // datum in place. There are pointers pointing to this array.
+      topStories.splice(0, topStories.length);
+      topStories.push.apply(topStories, resp.data);
+    });
+  };
+
+  var getPersonalStories = function(usernames){
+    var query = 'http://hn.algolia.com/api/v1/search_by_date?hitsPerPage=500&tagFilters=(story,comment),(';
+    var csv = arrToCSV(usernames);
+
+    query += csv + ')';
+
+    return $http({
+      method: 'GET',
+      url: query
+    })
+    .then(function(resp) {
+      angular.forEach(resp.data.hits, function(item){
+        // HN Comments don't have a title. So flag them as a comment.
+        // This will come in handy when we decide how to render each item.
+        if(item.title === null){
+          item.isComment = true;
+        }
+      });
+
+      // Very important to not point personalStories to a new array.
+      // Instead, clear out the array, then push all the new
+      // datum in place. There are pointers pointing to this array.
+      personalStories.splice(0, personalStories.length);
+      personalStories.push.apply(personalStories, resp.data.hits);
+    });
+  };
+
+  var arrToCSV = function(arr){
+    var holder = [];
+
+    for(var i = 0; i < arr.length; i++){
+      holder.push('author_' + arr[i]);
+    }
+
+    return holder.join(',');
+  };
+
+  var init = function(){
+    getPersonalStories(Followers.following);
+
+    $interval(function(){
+      getPersonalStories(Followers.following);
+      getTopStories();
+    }, 300000);
+  };
+
+  init();
+
+  return {
+    getTopStories: getTopStories,
+    getPersonalStories: getPersonalStories,
+    personalStories: personalStories,
+    topStories: topStories
+  };
+}]);
+
+
+
 angular.module('hack.auth', [])
 
 .controller('AuthController', ["$scope", "$window", "$location", "Auth", "Followers", 
@@ -46,7 +258,7 @@ angular.module('hack.auth', [])
 
 angular.module('hack.currentlyFollowing', [])
 
-.controller('CurrentlyFollowingController', function ($scope, Followers) {
+.controller('CurrentlyFollowingController', ["$scope", "Followers", function ($scope, Followers) {
   $scope.currentlyFollowing = Followers.following;
 
   $scope.unfollow = function(user){
@@ -57,11 +269,11 @@ angular.module('hack.currentlyFollowing', [])
     Followers.addFollower(user);
     $scope.newFollow = "";
   };
-});
+}]);
 
 angular.module('hack.personal', [])
 
-.controller('PersonalController', function ($scope, $window, Links, Followers) {
+.controller('PersonalController', ["$scope", "$window", "Links", "Followers", function ($scope, $window, Links, Followers) {
   $scope.stories = Links.personalStories;
   $scope.users = Followers.following;
   $scope.index = 30;
@@ -75,11 +287,11 @@ angular.module('hack.personal', [])
   };
   
   init();
-});
+}]);
 
 angular.module('hack.tabs', [])
 
-.controller('TabsController', function ($scope, $window, Links, Followers) {
+.controller('TabsController', ["$scope", "$window", "Links", "Followers", function ($scope, $window, Links, Followers) {
   // If a user refreshes when the location is '/personal',
   // it will stay on '/personal'.
   var hash = $window.location.hash.split('/')[1];
@@ -99,11 +311,11 @@ angular.module('hack.tabs', [])
     Links.getPersonalStories(Followers.following);
     $scope.angle += 360;
   };
-});
+}]);
 
 angular.module('hack.topStories', [])
 
-.controller('TopStoriesController', function ($scope, $window, Links, Followers) {
+.controller('TopStoriesController', ["$scope", "$window", "Links", "Followers", function ($scope, $window, Links, Followers) {
   angular.extend($scope, Links);
   $scope.stories = Links.topStories;
   $scope.index = 30;
@@ -119,7 +331,7 @@ angular.module('hack.topStories', [])
   };
 
   $scope.getData();
-});
+}]);
 
 
 angular.module('hack', [
@@ -134,7 +346,7 @@ angular.module('hack', [
   'ngRoute'
 ])
 
-.config(function($routeProvider, $httpProvider) {
+.config(["$routeProvider", "$httpProvider", function($routeProvider, $httpProvider) {
   $routeProvider
     .when('/', {
       templateUrl: 'app/topStories/topStories.html',
@@ -147,7 +359,7 @@ angular.module('hack', [
     .otherwise({
       redirectTo: '/'
     });
-})
+}])
 
 .filter('fromNow', function(){
   return function(date){

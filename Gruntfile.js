@@ -6,7 +6,7 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'public/dist/production.js': 
-             ['public/app/services/services.js',
+             ['public/app/services/**.js',
               'public/app/auth/auth.js',
               'public/app/currentlyFollowing/currentlyFollowing.js',
               'public/app/personal/personal.js',
