@@ -43,7 +43,7 @@ module.exports = function(grunt) {
          'public/app/**/*.js', 'server/**/*.js', 
       ],
       options: {
-        force: 'true',
+        force: 'false',
         jshintrc: '.jshintrc',
         ignores: [
           'public/lib/**/*.js',
@@ -82,14 +82,16 @@ module.exports = function(grunt) {
     },
 
      shell: {
-        makeDir: {
-            command: 'mkdir test'
+        pull: {
+            command: 'git pull --rebase upstream master'
         },
-        dirListing: {
-            command: 'ls'
-        }
-    }
-
+       push: {
+            command: function (branch) {
+             return 'git push origin' + branch;
+                }
+            },
+          },
+        
 	 });
 
 	 grunt.loadNpmTasks('grunt-contrib-concat');
@@ -101,10 +103,17 @@ module.exports = function(grunt) {
    grunt.loadNpmTasks('grunt-shell');
 
 
+   grunt.registerTask('gitFunction', 'Upload code to specified target.', function(n) {
+    if (grunt.option('target')) {
+       grunt.task.run([shell.pull]);
+       grunt.task.run([shell.push(target)]);
+    }
+     
+   });
+
    grunt.registerTask('build', [
      'concat',
      'ngAnnotate',
      'cssmin',
   ]);
-
 };
