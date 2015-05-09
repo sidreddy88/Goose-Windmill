@@ -3,6 +3,8 @@
 // log in, because who actually has time to decide on a username/password?
 
 // So, we do this by saving the users that they follow into localStorage.
+// On signup, we'll send the users string in localStorage to our server
+// which wil save them to a database.
 
 angular.module('hack.followService', [])
 
@@ -35,6 +37,7 @@ angular.module('hack.followService', [])
       following.push(username);
     }
 
+    // makes call to database to mirror our changes
     updateFollowing();
   };
 
@@ -49,6 +52,7 @@ angular.module('hack.followService', [])
       $window.localStorage.setItem('hfUsers', localFollowing);
     }
 
+    // makes call to database to mirror our changes
     updateFollowing();
   };
 
