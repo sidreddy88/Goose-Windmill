@@ -10,6 +10,7 @@ body{
 html {
   height: 100%;
   width: 100%;
+  overflow-x: hidden;
 }
 
 a{
@@ -178,7 +179,7 @@ button {
 .story-title {
   font-size: 16px;
   font-weight: 600;
-  font-family: 'open sans';
+  font-family: 'open sans', helvetica, arial, sans-serif;
 }
 
 .bottom-row {
@@ -297,4 +298,8 @@ button {
 
 .refresh:hover {
   opacity: 0.7;
+}
+
+.story-holder a:hover {
+  text-decoration: underline;
 }
