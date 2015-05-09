@@ -2,7 +2,9 @@ angular.module('hack', [
   'hack.topStories',
   'hack.personal',
   'hack.currentlyFollowing',
-  'hack.services',
+  'hack.linkService',
+  'hack.authService',
+  'hack.followService',
   'hack.tabs',
   'hack.auth',
   'ngRoute'
@@ -40,7 +42,6 @@ angular.module('hack', [
     restrict: 'A',
     link: function (scope, element, attrs) {
       scope.$watch(attrs.degrees, function (rotateDegrees) {
-        console.log(rotateDegrees);
         var r = 'rotate(' + rotateDegrees + 'deg)';
         element.css({
           '-moz-transform': r,

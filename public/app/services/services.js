@@ -1,4 +1,4 @@
-angular.module('hack.services', [])
+angular.module('hack.linkService', [])
 
 .factory('Links', function($http, $interval, Followers) {
   var personalStories = [];
@@ -12,6 +12,10 @@ angular.module('hack.services', [])
       url: url
     })
     .then(function(resp) {
+
+      // Very important to not point topStories to a new array.
+      // Instead, clear out the array, then push all the new
+      // datum in place. There are pointers pointing to this array.
       topStories.splice(0, topStories.length);
       topStories.push.apply(topStories, resp.data);
     });
@@ -19,13 +23,9 @@ angular.module('hack.services', [])
 
   var getPersonalStories = function(usernames){
     var query = 'http://hn.algolia.com/api/v1/search_by_date?hitsPerPage=500&tagFilters=(story,comment),(';
-    var userQuery = [];
+    var csv = arrToCSV(usernames);
 
-    for(var i = 0; i < usernames.length; i++){
-      userQuery.push('author_' + usernames[i]);
-    }
-
-    query += userQuery.join(',') + ')';
+    query += csv + ')';
 
     return $http({
       method: 'GET',
@@ -33,14 +33,29 @@ angular.module('hack.services', [])
     })
     .then(function(resp) {
       angular.forEach(resp.data.hits, function(item){
+        // HN Comments don't have a title. So flag them as a comment.
+        // This will come in handy when we decide how to render each item.
         if(item.title === null){
           item.isComment = true;
         }
       });
 
+      // Very important to not point personalStories to a new array.
+      // Instead, clear out the array, then push all the new
+      // datum in place. There are pointers pointing to this array.
       personalStories.splice(0, personalStories.length);
       personalStories.push.apply(personalStories, resp.data.hits);
     });
+  };
+
+  var arrToCSV = function(arr){
+    var holder = [];
+
+    for(var i = 0; i < arr.length; i++){
+      holder.push('author_' + arr[i]);
+    }
+
+    return holder.join(',');
   };
 
   var init = function(){
@@ -60,119 +75,6 @@ angular.module('hack.services', [])
     personalStories: personalStories,
     topStories: topStories
   };
-})
-
-.factory('Followers',  function($http, $window) {
-  var following = [];
-
-  var updateFollowing = function(){
-    var user = $window.localStorage.getItem('com.hack');
-
-    if(!!user){
-      var data = {
-        username: user,
-        following: localStorageUsers()
-      };
-
-      $http({
-        method: 'POST',
-        url: '/api/users/updateFollowing',
-        data: data
-      });
-    }
-  };
-
-  var addFollower = function(username){
-    var localFollowing = localStorageUsers();
-
-    if (!localFollowing.includes(username) && following.indexOf(username) === -1) {
-      localFollowing += ',' + username
-      $window.localStorage.setItem('hfUsers', localFollowing);
-      following.push(username);
-    }
-
-    updateFollowing();
-  };
-
-  var removeFollower = function(username){
-    var localFollowing = localStorageUsers();
-
-    if (localFollowing.includes(username) && following.indexOf(username) > -1) {
-      following.splice(following.indexOf(username), 1);
-
-      localFollowing = localFollowing.split(',');
-      localFollowing.splice(localFollowing.indexOf(username), 1).join(',');
-      $window.localStorage.setItem('hfUsers', localFollowing);
-    }
-
-    updateFollowing();
-  };
-
-  var localStorageUsers = function(){
-    return $window.localStorage.getItem('hfUsers');
-  }
-
-  var localToArr = function(){
-    if(!localStorageUsers()){
-      $window.localStorage.setItem('hfUsers', 'pg,sama');
-    }
-
-    var users = localStorageUsers().split(',');
-
-    following.splice(0, following.length);
-    following.push.apply(following, users);
-  }
-
-  var init = function(){
-    localToArr();
-  };
-
-  init();
-
-  return {
-    following: following,
-    addFollower: addFollower,
-    removeFollower: removeFollower,
-    localToArr: localToArr
-  }
-})
-
-.factory('Auth', function ($http, $location, $window) {
-  var signin = function (user) {
-    return $http({
-      method: 'POST',
-      url: '/api/users/signin',
-      data: user
-    })
-    .then(function (resp) {
-      return resp.data;
-    });
-  };
-
-  var signup = function (user) {
-    return $http({
-      method: 'POST',
-      url: '/api/users/signup',
-      data: user
-    })
-    .then(function (resp) {
-      return resp.data;
-    });
-  };
-
-  var isAuth = function () {
-    return !!$window.localStorage.getItem('com.hack');
-  };
-
-  var signout = function () {
-    $window.localStorage.removeItem('com.hack');
-  };
-
-
-  return {
-    signin: signin,
-    signup: signup,
-    isAuth: isAuth,
-    signout: signout
-  };
 });
+
+
