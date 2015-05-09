@@ -1,0 +1,2651 @@
+
+body{
+  font-family: helvetica, arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  /*background: #F8F8F8;*/
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+a{
+  color: black;
+  text-decoration: none;
+}
+
+.left-container {
+  width: 400px;
+  height: 100%;
+  float: left;
+  position: fixed;
+  background: #404040;
+  color: white;
+}
+
+.personal-container {
+  margin-top: -20px;
+}
+
+.auth-container {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding-left: 100px;
+  padding-top: 25px;
+  padding-bottom: 20px;
+  width: 300px;
+  background: #FFA500;
+  background: #FF8C00;
+}
+
+.tabs{
+  width: 100%;
+  background: white;
+}
+
+.tab {
+  display: block;
+  padding-top: 25px;
+  padding-bottom: 30px;
+  height: 50px;
+  padding-left: 93px;
+  text-decoration: none;
+  font-size: 40px;
+  letter-spacing: -3px;
+  font-weight: bold;
+  position: relative;
+  color: #303030;
+}
+
+
+.currently-following{
+  width: 305px;
+  /*height: 100%;*/
+  margin: 0;
+  color: white;
+  margin-left: 95px;
+  margin-top: 30px;
+}
+
+.following-header {
+  color: white;
+  text-align: center;
+  margin-top: 160px;
+  /*top: 400px;*/
+  left: 20px;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -3px;
+}
+
+.auth-header {
+  color: black;
+  text-align: center;
+  left: 20px;
+  bottom: -30px;
+  margin: 0;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -2px;
+  text-align: center;
+}
+
+.tab-header {
+  color: black;
+  text-align: center;
+  top: 150px;
+  left: 10px;
+  margin: 0;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -2px;
+  z-index: 200;
+}
+
+.hero-header {
+  font-size: 50px;
+  top: 270px;
+  position: fixed;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  /*right: -100px;*/
+  left: 95%;
+  margin: 0;
+}
+
+.feed {
+  float: left;
+  margin-left: 545px;
+  margin-left: 580px;
+  margin-top: 30px;
+}
+
+.story{
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.comment {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 25px;
+  margin-right: 150px;
+  background: rgb(244,244,244) ;
+  background: #E8E8E8;
+  border-radius: 2px;
+}
+
+.followed-user {
+  padding: 7px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  float: left;
+  cursor: pointer;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  color: black;
+  background: white;
+  opacity: 0.8;
+  font-size: 14px;
+}
+
+.followed-user:hover {
+  background: lightgrey;
+}
+
+.story-title {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'open sans';
+}
+
+.bottom-row {
+  /*color: grey;*/
+  opacity: 0.4;
+  font-size: 13px;
+}
+
+.top-row {
+  margin-bottom: 20px;
+  opacity: 0.35;
+  font-size: 14px;
+}
+
+.points-bar {
+  background: #B0B0B0;
+  /*background: black;*/
+  height: 8px;
+  position: absolute;
+  box-sizing: border-box;
+  right: 100%;
+  margin-right: 10px;
+  top: 10px;
+  max-width: 133px;
+}
+
+.active {
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #585858;
+
+  right: -5px;
+  position: absolute;
+  top: 38px;
+}
+
+.source-url {
+  opacity: 0.4;
+  font-size: 13px;
+}
+
+.more-button {
+  display: block;
+  margin-top: 40px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-right: 150px;
+  text-align: center;
+  /*background: #e8e8e8;*/
+  border-top: 4px solid black;
+  border-left: 4px solid black;
+  border-right: 4px solid black;
+  cursor: pointer;
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: -3px;
+  opacity: 0.55;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.more-button:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.faded {
+  background: #E8E8E8;
+  opacity: 0.4;
+}
+.faded:hover{
+  opacity: 1;
+}
+
+.new-follow {
+  margin-bottom: 10px;
+}
+
+#signin {
+  margin-bottom: 25px;
+}
+
+.auth-info {
+  font-size: 15px;
+  margin: 0;
+  margin-bottom: 25px;
+}
+
+.logged-header {
+  color: black;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 40px;
+  letter-spacing: -2px;
+}
+body{
+  font-family: helvetica, arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  /*background: #F8F8F8;*/
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+a{
+  color: black;
+  text-decoration: none;
+}
+
+.left-container {
+  width: 400px;
+  height: 100%;
+  float: left;
+  position: fixed;
+  background: #404040;
+  color: white;
+}
+
+.personal-container {
+  margin-top: -20px;
+}
+
+.auth-container {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding-left: 100px;
+  padding-top: 25px;
+  padding-bottom: 20px;
+  width: 300px;
+  background: #FFA500;
+  background: #FF8C00;
+}
+
+.tabs{
+  width: 100%;
+  background: white;
+}
+
+.tab {
+  display: block;
+  padding-top: 25px;
+  padding-bottom: 30px;
+  height: 50px;
+  padding-left: 93px;
+  text-decoration: none;
+  font-size: 40px;
+  letter-spacing: -3px;
+  font-weight: bold;
+  position: relative;
+  color: #303030;
+}
+
+
+.currently-following{
+  width: 305px;
+  /*height: 100%;*/
+  margin: 0;
+  color: white;
+  margin-left: 95px;
+  margin-top: 30px;
+}
+
+.following-header {
+  color: white;
+  text-align: center;
+  margin-top: 160px;
+  /*top: 400px;*/
+  left: 20px;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -3px;
+}
+
+.auth-header {
+  color: black;
+  text-align: center;
+  left: 20px;
+  bottom: -30px;
+  margin: 0;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -2px;
+  text-align: center;
+}
+
+.tab-header {
+  color: black;
+  text-align: center;
+  top: 150px;
+  left: 10px;
+  margin: 0;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -2px;
+  z-index: 200;
+}
+
+.hero-header {
+  font-size: 50px;
+  top: 270px;
+  position: fixed;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  /*right: -100px;*/
+  left: 95%;
+  margin: 0;
+}
+
+.feed {
+  float: left;
+  margin-left: 545px;
+  margin-left: 580px;
+  margin-top: 30px;
+}
+
+.story{
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.comment {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 25px;
+  margin-right: 150px;
+  background: rgb(244,244,244) ;
+  background: #E8E8E8;
+  border-radius: 2px;
+}
+
+.followed-user {
+  padding: 7px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  float: left;
+  cursor: pointer;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  color: black;
+  background: white;
+  opacity: 0.8;
+  font-size: 14px;
+}
+
+.followed-user:hover {
+  background: lightgrey;
+}
+
+.story-title {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'open sans';
+}
+
+.bottom-row {
+  /*color: grey;*/
+  opacity: 0.4;
+  font-size: 13px;
+}
+
+.top-row {
+  margin-bottom: 20px;
+  opacity: 0.35;
+  font-size: 14px;
+}
+
+.points-bar {
+  background: #B0B0B0;
+  /*background: black;*/
+  height: 8px;
+  position: absolute;
+  box-sizing: border-box;
+  right: 100%;
+  margin-right: 10px;
+  top: 10px;
+  max-width: 133px;
+}
+
+.active {
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #585858;
+
+  right: -5px;
+  position: absolute;
+  top: 38px;
+}
+
+.source-url {
+  opacity: 0.4;
+  font-size: 13px;
+}
+
+.more-button {
+  display: block;
+  margin-top: 40px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-right: 150px;
+  text-align: center;
+  /*background: #e8e8e8;*/
+  border-top: 4px solid black;
+  border-left: 4px solid black;
+  border-right: 4px solid black;
+  cursor: pointer;
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: -3px;
+  opacity: 0.55;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.more-button:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.faded {
+  background: #E8E8E8;
+  opacity: 0.4;
+}
+.faded:hover{
+  opacity: 1;
+}
+
+.new-follow {
+  margin-bottom: 10px;
+}
+
+#signin {
+  margin-bottom: 25px;
+}
+
+.auth-info {
+  font-size: 15px;
+  margin: 0;
+  margin-bottom: 25px;
+}
+
+.logged-header {
+  color: black;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 40px;
+  letter-spacing: -2px;
+}
+body{
+  font-family: helvetica, arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  /*background: #F8F8F8;*/
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+a{
+  color: black;
+  text-decoration: none;
+}
+
+.left-container {
+  width: 400px;
+  height: 100%;
+  float: left;
+  position: fixed;
+  background: #404040;
+  color: white;
+}
+
+.personal-container {
+  margin-top: -20px;
+}
+
+.auth-container {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding-left: 100px;
+  padding-top: 25px;
+  padding-bottom: 20px;
+  width: 300px;
+  background: #FFA500;
+  background: #FF8C00;
+}
+
+.tabs{
+  width: 100%;
+  background: white;
+}
+
+.tab {
+  display: block;
+  padding-top: 25px;
+  padding-bottom: 30px;
+  height: 50px;
+  padding-left: 93px;
+  text-decoration: none;
+  font-size: 40px;
+  letter-spacing: -3px;
+  font-weight: bold;
+  position: relative;
+  color: #303030;
+}
+
+
+.currently-following{
+  width: 305px;
+  /*height: 100%;*/
+  margin: 0;
+  color: white;
+  margin-left: 95px;
+  margin-top: 30px;
+}
+
+.following-header {
+  color: white;
+  text-align: center;
+  margin-top: 160px;
+  /*top: 400px;*/
+  left: 20px;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -3px;
+}
+
+.auth-header {
+  color: black;
+  text-align: center;
+  left: 20px;
+  bottom: -30px;
+  margin: 0;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -2px;
+  text-align: center;
+}
+
+.tab-header {
+  color: black;
+  text-align: center;
+  top: 150px;
+  left: 10px;
+  margin: 0;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -2px;
+  z-index: 200;
+}
+
+.hero-header {
+  font-size: 50px;
+  top: 270px;
+  position: fixed;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  /*right: -100px;*/
+  left: 95%;
+  margin: 0;
+}
+
+.feed {
+  float: left;
+  margin-left: 545px;
+  margin-left: 580px;
+  margin-top: 30px;
+}
+
+.story{
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.comment {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 25px;
+  margin-right: 150px;
+  background: rgb(244,244,244) ;
+  background: #E8E8E8;
+  border-radius: 2px;
+}
+
+.followed-user {
+  padding: 7px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  float: left;
+  cursor: pointer;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  color: black;
+  background: white;
+  opacity: 0.8;
+  font-size: 14px;
+}
+
+.followed-user:hover {
+  background: lightgrey;
+}
+
+.story-title {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'open sans';
+}
+
+.bottom-row {
+  /*color: grey;*/
+  opacity: 0.4;
+  font-size: 13px;
+}
+
+.top-row {
+  margin-bottom: 20px;
+  opacity: 0.35;
+  font-size: 14px;
+}
+
+.points-bar {
+  background: #B0B0B0;
+  /*background: black;*/
+  height: 8px;
+  position: absolute;
+  box-sizing: border-box;
+  right: 100%;
+  margin-right: 10px;
+  top: 10px;
+  max-width: 133px;
+}
+
+.active {
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #585858;
+
+  right: -5px;
+  position: absolute;
+  top: 38px;
+}
+
+.source-url {
+  opacity: 0.4;
+  font-size: 13px;
+}
+
+.more-button {
+  display: block;
+  margin-top: 40px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-right: 150px;
+  text-align: center;
+  /*background: #e8e8e8;*/
+  border-top: 4px solid black;
+  border-left: 4px solid black;
+  border-right: 4px solid black;
+  cursor: pointer;
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: -3px;
+  opacity: 0.55;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.more-button:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.faded {
+  background: #E8E8E8;
+  opacity: 0.4;
+}
+.faded:hover{
+  opacity: 1;
+}
+
+.new-follow {
+  margin-bottom: 10px;
+}
+
+#signin {
+  margin-bottom: 25px;
+}
+
+.auth-info {
+  font-size: 15px;
+  margin: 0;
+  margin-bottom: 25px;
+}
+
+.logged-header {
+  color: black;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 40px;
+  letter-spacing: -2px;
+}
+body{
+  font-family: helvetica, arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  /*background: #F8F8F8;*/
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+a{
+  color: black;
+  text-decoration: none;
+}
+
+.left-container {
+  width: 400px;
+  height: 100%;
+  float: left;
+  position: fixed;
+  background: #404040;
+  color: white;
+}
+
+.personal-container {
+  margin-top: -20px;
+}
+
+.auth-container {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding-left: 100px;
+  padding-top: 25px;
+  padding-bottom: 20px;
+  width: 300px;
+  background: #FFA500;
+  background: #FF8C00;
+}
+
+.tabs{
+  width: 100%;
+  background: white;
+}
+
+.tab {
+  display: block;
+  padding-top: 25px;
+  padding-bottom: 30px;
+  height: 50px;
+  padding-left: 93px;
+  text-decoration: none;
+  font-size: 40px;
+  letter-spacing: -3px;
+  font-weight: bold;
+  position: relative;
+  color: #303030;
+}
+
+
+.currently-following{
+  width: 305px;
+  /*height: 100%;*/
+  margin: 0;
+  color: white;
+  margin-left: 95px;
+  margin-top: 30px;
+}
+
+.following-header {
+  color: white;
+  text-align: center;
+  margin-top: 160px;
+  /*top: 400px;*/
+  left: 20px;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -3px;
+}
+
+.auth-header {
+  color: black;
+  text-align: center;
+  left: 20px;
+  bottom: -30px;
+  margin: 0;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -2px;
+  text-align: center;
+}
+
+.tab-header {
+  color: black;
+  text-align: center;
+  top: 150px;
+  left: 10px;
+  margin: 0;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -2px;
+  z-index: 200;
+}
+
+.hero-header {
+  font-size: 50px;
+  top: 270px;
+  position: fixed;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  /*right: -100px;*/
+  left: 95%;
+  margin: 0;
+}
+
+.feed {
+  float: left;
+  margin-left: 545px;
+  margin-left: 580px;
+  margin-top: 30px;
+}
+
+.story{
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.comment {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 25px;
+  margin-right: 150px;
+  background: rgb(244,244,244) ;
+  background: #E8E8E8;
+  border-radius: 2px;
+}
+
+.followed-user {
+  padding: 7px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  float: left;
+  cursor: pointer;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  color: black;
+  background: white;
+  opacity: 0.8;
+  font-size: 14px;
+}
+
+.followed-user:hover {
+  background: lightgrey;
+}
+
+.story-title {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'open sans';
+}
+
+.bottom-row {
+  /*color: grey;*/
+  opacity: 0.4;
+  font-size: 13px;
+}
+
+.top-row {
+  margin-bottom: 20px;
+  opacity: 0.35;
+  font-size: 14px;
+}
+
+.points-bar {
+  background: #B0B0B0;
+  /*background: black;*/
+  height: 8px;
+  position: absolute;
+  box-sizing: border-box;
+  right: 100%;
+  margin-right: 10px;
+  top: 10px;
+  max-width: 133px;
+}
+
+.active {
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #585858;
+
+  right: -5px;
+  position: absolute;
+  top: 38px;
+}
+
+.source-url {
+  opacity: 0.4;
+  font-size: 13px;
+}
+
+.more-button {
+  display: block;
+  margin-top: 40px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-right: 150px;
+  text-align: center;
+  /*background: #e8e8e8;*/
+  border-top: 4px solid black;
+  border-left: 4px solid black;
+  border-right: 4px solid black;
+  cursor: pointer;
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: -3px;
+  opacity: 0.55;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.more-button:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.faded {
+  background: #E8E8E8;
+  opacity: 0.4;
+}
+.faded:hover{
+  opacity: 1;
+}
+
+.new-follow {
+  margin-bottom: 10px;
+}
+
+#signin {
+  margin-bottom: 25px;
+}
+
+.auth-info {
+  font-size: 15px;
+  margin: 0;
+  margin-bottom: 25px;
+}
+
+.logged-header {
+  color: black;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 40px;
+  letter-spacing: -2px;
+}
+body{
+  font-family: helvetica, arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  /*background: #F8F8F8;*/
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+a{
+  color: black;
+  text-decoration: none;
+}
+
+.left-container {
+  width: 400px;
+  height: 100%;
+  float: left;
+  position: fixed;
+  background: #404040;
+  color: white;
+}
+
+.personal-container {
+  margin-top: -20px;
+}
+
+.auth-container {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding-left: 100px;
+  padding-top: 25px;
+  padding-bottom: 20px;
+  width: 300px;
+  background: #FFA500;
+  background: #FF8C00;
+}
+
+.tabs{
+  width: 100%;
+  background: white;
+}
+
+.tab {
+  display: block;
+  padding-top: 25px;
+  padding-bottom: 30px;
+  height: 50px;
+  padding-left: 93px;
+  text-decoration: none;
+  font-size: 40px;
+  letter-spacing: -3px;
+  font-weight: bold;
+  position: relative;
+  color: #303030;
+}
+
+
+.currently-following{
+  width: 305px;
+  /*height: 100%;*/
+  margin: 0;
+  color: white;
+  margin-left: 95px;
+  margin-top: 30px;
+}
+
+.following-header {
+  color: white;
+  text-align: center;
+  margin-top: 160px;
+  /*top: 400px;*/
+  left: 20px;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -3px;
+}
+
+.auth-header {
+  color: black;
+  text-align: center;
+  left: 20px;
+  bottom: -30px;
+  margin: 0;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -2px;
+  text-align: center;
+}
+
+.tab-header {
+  color: black;
+  text-align: center;
+  top: 150px;
+  left: 10px;
+  margin: 0;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -2px;
+  z-index: 200;
+}
+
+.hero-header {
+  font-size: 50px;
+  top: 270px;
+  position: fixed;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  /*right: -100px;*/
+  left: 95%;
+  margin: 0;
+}
+
+.feed {
+  float: left;
+  margin-left: 545px;
+  margin-left: 580px;
+  margin-top: 30px;
+}
+
+.story{
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.comment {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 25px;
+  margin-right: 150px;
+  background: rgb(244,244,244) ;
+  background: #E8E8E8;
+  border-radius: 2px;
+}
+
+.followed-user {
+  padding: 7px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  float: left;
+  cursor: pointer;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  color: black;
+  background: white;
+  opacity: 0.8;
+  font-size: 14px;
+}
+
+.followed-user:hover {
+  background: lightgrey;
+}
+
+.story-title {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'open sans';
+}
+
+.bottom-row {
+  /*color: grey;*/
+  opacity: 0.4;
+  font-size: 13px;
+}
+
+.top-row {
+  margin-bottom: 20px;
+  opacity: 0.35;
+  font-size: 14px;
+}
+
+.points-bar {
+  background: #B0B0B0;
+  /*background: black;*/
+  height: 8px;
+  position: absolute;
+  box-sizing: border-box;
+  right: 100%;
+  margin-right: 10px;
+  top: 10px;
+  max-width: 133px;
+}
+
+.active {
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #585858;
+
+  right: -5px;
+  position: absolute;
+  top: 38px;
+}
+
+.source-url {
+  opacity: 0.4;
+  font-size: 13px;
+}
+
+.more-button {
+  display: block;
+  margin-top: 40px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-right: 150px;
+  text-align: center;
+  /*background: #e8e8e8;*/
+  border-top: 4px solid black;
+  border-left: 4px solid black;
+  border-right: 4px solid black;
+  cursor: pointer;
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: -3px;
+  opacity: 0.55;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.more-button:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.faded {
+  background: #E8E8E8;
+  opacity: 0.4;
+}
+.faded:hover{
+  opacity: 1;
+}
+
+.new-follow {
+  margin-bottom: 10px;
+}
+
+#signin {
+  margin-bottom: 25px;
+}
+
+.auth-info {
+  font-size: 15px;
+  margin: 0;
+  margin-bottom: 25px;
+}
+
+.logged-header {
+  color: black;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 40px;
+  letter-spacing: -2px;
+}
+body{
+  font-family: helvetica, arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  /*background: #F8F8F8;*/
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+a{
+  color: black;
+  text-decoration: none;
+}
+
+.left-container {
+  width: 400px;
+  height: 100%;
+  float: left;
+  position: fixed;
+  background: #404040;
+  color: white;
+}
+
+.personal-container {
+  margin-top: -20px;
+}
+
+.auth-container {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding-left: 100px;
+  padding-top: 25px;
+  padding-bottom: 20px;
+  width: 300px;
+  background: #FFA500;
+  background: #FF8C00;
+}
+
+.tabs{
+  width: 100%;
+  background: white;
+}
+
+.tab {
+  display: block;
+  padding-top: 25px;
+  padding-bottom: 30px;
+  height: 50px;
+  padding-left: 93px;
+  text-decoration: none;
+  font-size: 40px;
+  letter-spacing: -3px;
+  font-weight: bold;
+  position: relative;
+  color: #303030;
+}
+
+
+.currently-following{
+  width: 305px;
+  /*height: 100%;*/
+  margin: 0;
+  color: white;
+  margin-left: 95px;
+  margin-top: 30px;
+}
+
+.following-header {
+  color: white;
+  text-align: center;
+  margin-top: 160px;
+  /*top: 400px;*/
+  left: 20px;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -3px;
+}
+
+.auth-header {
+  color: black;
+  text-align: center;
+  left: 20px;
+  bottom: -30px;
+  margin: 0;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -2px;
+  text-align: center;
+}
+
+.tab-header {
+  color: black;
+  text-align: center;
+  top: 150px;
+  left: 10px;
+  margin: 0;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -2px;
+  z-index: 200;
+}
+
+.hero-header {
+  font-size: 50px;
+  top: 270px;
+  position: fixed;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  /*right: -100px;*/
+  left: 95%;
+  margin: 0;
+}
+
+.feed {
+  float: left;
+  margin-left: 545px;
+  margin-left: 580px;
+  margin-top: 30px;
+}
+
+.story{
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.comment {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 25px;
+  margin-right: 150px;
+  background: rgb(244,244,244) ;
+  background: #E8E8E8;
+  border-radius: 2px;
+}
+
+.followed-user {
+  padding: 7px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  float: left;
+  cursor: pointer;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  color: black;
+  background: white;
+  opacity: 0.8;
+  font-size: 14px;
+}
+
+.followed-user:hover {
+  background: lightgrey;
+}
+
+.story-title {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'open sans';
+}
+
+.bottom-row {
+  /*color: grey;*/
+  opacity: 0.4;
+  font-size: 13px;
+}
+
+.top-row {
+  margin-bottom: 20px;
+  opacity: 0.35;
+  font-size: 14px;
+}
+
+.points-bar {
+  background: #B0B0B0;
+  /*background: black;*/
+  height: 8px;
+  position: absolute;
+  box-sizing: border-box;
+  right: 100%;
+  margin-right: 10px;
+  top: 10px;
+  max-width: 133px;
+}
+
+.active {
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #585858;
+
+  right: -5px;
+  position: absolute;
+  top: 38px;
+}
+
+.source-url {
+  opacity: 0.4;
+  font-size: 13px;
+}
+
+.more-button {
+  display: block;
+  margin-top: 40px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-right: 150px;
+  text-align: center;
+  /*background: #e8e8e8;*/
+  border-top: 4px solid black;
+  border-left: 4px solid black;
+  border-right: 4px solid black;
+  cursor: pointer;
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: -3px;
+  opacity: 0.55;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.more-button:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.faded {
+  background: #E8E8E8;
+  opacity: 0.4;
+}
+.faded:hover{
+  opacity: 1;
+}
+
+.new-follow {
+  margin-bottom: 10px;
+}
+
+#signin {
+  margin-bottom: 25px;
+}
+
+.auth-info {
+  font-size: 15px;
+  margin: 0;
+  margin-bottom: 25px;
+}
+
+.logged-header {
+  color: black;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 40px;
+  letter-spacing: -2px;
+}
+body{
+  font-family: helvetica, arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  /*background: #F8F8F8;*/
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+a{
+  color: black;
+  text-decoration: none;
+}
+
+.left-container {
+  width: 400px;
+  height: 100%;
+  float: left;
+  position: fixed;
+  background: #404040;
+  color: white;
+}
+
+.personal-container {
+  margin-top: -20px;
+}
+
+.auth-container {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding-left: 100px;
+  padding-top: 25px;
+  padding-bottom: 20px;
+  width: 300px;
+  background: #FFA500;
+  background: #FF8C00;
+}
+
+.tabs{
+  width: 100%;
+  background: white;
+}
+
+.tab {
+  display: block;
+  padding-top: 25px;
+  padding-bottom: 30px;
+  height: 50px;
+  padding-left: 93px;
+  text-decoration: none;
+  font-size: 40px;
+  letter-spacing: -3px;
+  font-weight: bold;
+  position: relative;
+  color: #303030;
+}
+
+
+.currently-following{
+  width: 305px;
+  /*height: 100%;*/
+  margin: 0;
+  color: white;
+  margin-left: 95px;
+  margin-top: 30px;
+}
+
+.following-header {
+  color: white;
+  text-align: center;
+  margin-top: 160px;
+  /*top: 400px;*/
+  left: 20px;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -3px;
+}
+
+.auth-header {
+  color: black;
+  text-align: center;
+  left: 20px;
+  bottom: -30px;
+  margin: 0;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -2px;
+  text-align: center;
+}
+
+.tab-header {
+  color: black;
+  text-align: center;
+  top: 150px;
+  left: 10px;
+  margin: 0;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -2px;
+  z-index: 200;
+}
+
+.hero-header {
+  font-size: 50px;
+  top: 270px;
+  position: fixed;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  /*right: -100px;*/
+  left: 95%;
+  margin: 0;
+}
+
+.feed {
+  float: left;
+  margin-left: 545px;
+  margin-left: 580px;
+  margin-top: 30px;
+}
+
+.story{
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.comment {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 25px;
+  margin-right: 150px;
+  background: rgb(244,244,244) ;
+  background: #E8E8E8;
+  border-radius: 2px;
+}
+
+.followed-user {
+  padding: 7px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  float: left;
+  cursor: pointer;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  color: black;
+  background: white;
+  opacity: 0.8;
+  font-size: 14px;
+}
+
+.followed-user:hover {
+  background: lightgrey;
+}
+
+.story-title {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'open sans';
+}
+
+.bottom-row {
+  /*color: grey;*/
+  opacity: 0.4;
+  font-size: 13px;
+}
+
+.top-row {
+  margin-bottom: 20px;
+  opacity: 0.35;
+  font-size: 14px;
+}
+
+.points-bar {
+  background: #B0B0B0;
+  /*background: black;*/
+  height: 8px;
+  position: absolute;
+  box-sizing: border-box;
+  right: 100%;
+  margin-right: 10px;
+  top: 10px;
+  max-width: 133px;
+}
+
+.active {
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #585858;
+
+  right: -5px;
+  position: absolute;
+  top: 38px;
+}
+
+.source-url {
+  opacity: 0.4;
+  font-size: 13px;
+}
+
+.more-button {
+  display: block;
+  margin-top: 40px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-right: 150px;
+  text-align: center;
+  /*background: #e8e8e8;*/
+  border-top: 4px solid black;
+  border-left: 4px solid black;
+  border-right: 4px solid black;
+  cursor: pointer;
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: -3px;
+  opacity: 0.55;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.more-button:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.faded {
+  background: #E8E8E8;
+  opacity: 0.4;
+}
+.faded:hover{
+  opacity: 1;
+}
+
+.new-follow {
+  margin-bottom: 10px;
+}
+
+#signin {
+  margin-bottom: 25px;
+}
+
+.auth-info {
+  font-size: 15px;
+  margin: 0;
+  margin-bottom: 25px;
+}
+
+.logged-header {
+  color: black;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 40px;
+  letter-spacing: -2px;
+}
+body{
+  font-family: helvetica, arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  /*background: #F8F8F8;*/
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+a{
+  color: black;
+  text-decoration: none;
+}
+
+.left-container {
+  width: 400px;
+  height: 100%;
+  float: left;
+  position: fixed;
+  background: #404040;
+  color: white;
+}
+
+.personal-container {
+  margin-top: -20px;
+}
+
+.auth-container {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding-left: 100px;
+  padding-top: 25px;
+  padding-bottom: 20px;
+  width: 300px;
+  background: #FFA500;
+  background: #FF8C00;
+}
+
+.tabs{
+  width: 100%;
+  background: white;
+}
+
+.tab {
+  display: block;
+  padding-top: 25px;
+  padding-bottom: 30px;
+  height: 50px;
+  padding-left: 93px;
+  text-decoration: none;
+  font-size: 40px;
+  letter-spacing: -3px;
+  font-weight: bold;
+  position: relative;
+  color: #303030;
+}
+
+
+.currently-following{
+  width: 305px;
+  /*height: 100%;*/
+  margin: 0;
+  color: white;
+  margin-left: 95px;
+  margin-top: 30px;
+}
+
+.following-header {
+  color: white;
+  text-align: center;
+  margin-top: 160px;
+  /*top: 400px;*/
+  left: 20px;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -3px;
+}
+
+.auth-header {
+  color: black;
+  text-align: center;
+  left: 20px;
+  bottom: -30px;
+  margin: 0;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -2px;
+  text-align: center;
+}
+
+.tab-header {
+  color: black;
+  text-align: center;
+  top: 150px;
+  left: 10px;
+  margin: 0;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -2px;
+  z-index: 200;
+}
+
+.hero-header {
+  font-size: 50px;
+  top: 270px;
+  position: fixed;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  /*right: -100px;*/
+  left: 95%;
+  margin: 0;
+}
+
+.feed {
+  float: left;
+  margin-left: 545px;
+  margin-left: 580px;
+  margin-top: 30px;
+}
+
+.story{
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.comment {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 25px;
+  margin-right: 150px;
+  background: rgb(244,244,244) ;
+  background: #E8E8E8;
+  border-radius: 2px;
+}
+
+.followed-user {
+  padding: 7px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  float: left;
+  cursor: pointer;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  color: black;
+  background: white;
+  opacity: 0.8;
+  font-size: 14px;
+}
+
+.followed-user:hover {
+  background: lightgrey;
+}
+
+.story-title {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'open sans';
+}
+
+.bottom-row {
+  /*color: grey;*/
+  opacity: 0.4;
+  font-size: 13px;
+}
+
+.top-row {
+  margin-bottom: 20px;
+  opacity: 0.35;
+  font-size: 14px;
+}
+
+.points-bar {
+  background: #B0B0B0;
+  /*background: black;*/
+  height: 8px;
+  position: absolute;
+  box-sizing: border-box;
+  right: 100%;
+  margin-right: 10px;
+  top: 10px;
+  max-width: 133px;
+}
+
+.active {
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #585858;
+
+  right: -5px;
+  position: absolute;
+  top: 38px;
+}
+
+.source-url {
+  opacity: 0.4;
+  font-size: 13px;
+}
+
+.more-button {
+  display: block;
+  margin-top: 40px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-right: 150px;
+  text-align: center;
+  /*background: #e8e8e8;*/
+  border-top: 4px solid black;
+  border-left: 4px solid black;
+  border-right: 4px solid black;
+  cursor: pointer;
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: -3px;
+  opacity: 0.55;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.more-button:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.faded {
+  background: #E8E8E8;
+  opacity: 0.4;
+}
+.faded:hover{
+  opacity: 1;
+}
+
+.new-follow {
+  margin-bottom: 10px;
+}
+
+#signin {
+  margin-bottom: 25px;
+}
+
+.auth-info {
+  font-size: 15px;
+  margin: 0;
+  margin-bottom: 25px;
+}
+
+.logged-header {
+  color: black;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 40px;
+  letter-spacing: -2px;
+}
+body{
+  font-family: helvetica, arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  /*background: #F8F8F8;*/
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+a{
+  color: black;
+  text-decoration: none;
+}
+
+.left-container {
+  width: 400px;
+  height: 100%;
+  float: left;
+  position: fixed;
+  background: #404040;
+  color: white;
+}
+
+.personal-container {
+  margin-top: -20px;
+}
+
+.auth-container {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding-left: 100px;
+  padding-top: 25px;
+  padding-bottom: 20px;
+  width: 300px;
+  background: #FFA500;
+  background: #FF8C00;
+}
+
+.tabs{
+  width: 100%;
+  background: white;
+}
+
+.tab {
+  display: block;
+  padding-top: 25px;
+  padding-bottom: 30px;
+  height: 50px;
+  padding-left: 93px;
+  text-decoration: none;
+  font-size: 40px;
+  letter-spacing: -3px;
+  font-weight: bold;
+  position: relative;
+  color: #303030;
+}
+
+
+.currently-following{
+  width: 305px;
+  /*height: 100%;*/
+  margin: 0;
+  color: white;
+  margin-left: 95px;
+  margin-top: 30px;
+}
+
+.following-header {
+  color: white;
+  text-align: center;
+  margin-top: 160px;
+  /*top: 400px;*/
+  left: 20px;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -3px;
+}
+
+.auth-header {
+  color: black;
+  text-align: center;
+  left: 20px;
+  bottom: -30px;
+  margin: 0;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -2px;
+  text-align: center;
+}
+
+.tab-header {
+  color: black;
+  text-align: center;
+  top: 150px;
+  left: 10px;
+  margin: 0;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -2px;
+  z-index: 200;
+}
+
+.hero-header {
+  font-size: 50px;
+  top: 270px;
+  position: fixed;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  /*right: -100px;*/
+  left: 95%;
+  margin: 0;
+}
+
+.feed {
+  float: left;
+  margin-left: 545px;
+  margin-left: 580px;
+  margin-top: 30px;
+}
+
+.story{
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.comment {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 25px;
+  margin-right: 150px;
+  background: rgb(244,244,244) ;
+  background: #E8E8E8;
+  border-radius: 2px;
+}
+
+.followed-user {
+  padding: 7px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  float: left;
+  cursor: pointer;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  color: black;
+  background: white;
+  opacity: 0.8;
+  font-size: 14px;
+}
+
+.followed-user:hover {
+  background: lightgrey;
+}
+
+.story-title {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'open sans';
+}
+
+.bottom-row {
+  /*color: grey;*/
+  opacity: 0.4;
+  font-size: 13px;
+}
+
+.top-row {
+  margin-bottom: 20px;
+  opacity: 0.35;
+  font-size: 14px;
+}
+
+.points-bar {
+  background: #B0B0B0;
+  /*background: black;*/
+  height: 8px;
+  position: absolute;
+  box-sizing: border-box;
+  right: 100%;
+  margin-right: 10px;
+  top: 10px;
+  max-width: 133px;
+}
+
+.active {
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #585858;
+
+  right: -5px;
+  position: absolute;
+  top: 38px;
+}
+
+.source-url {
+  opacity: 0.4;
+  font-size: 13px;
+}
+
+.more-button {
+  display: block;
+  margin-top: 40px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-right: 150px;
+  text-align: center;
+  /*background: #e8e8e8;*/
+  border-top: 4px solid black;
+  border-left: 4px solid black;
+  border-right: 4px solid black;
+  cursor: pointer;
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: -3px;
+  opacity: 0.55;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.more-button:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.faded {
+  background: #E8E8E8;
+  opacity: 0.4;
+}
+.faded:hover{
+  opacity: 1;
+}
+
+.new-follow {
+  margin-bottom: 10px;
+}
+
+#signin {
+  margin-bottom: 25px;
+}
+
+.auth-info {
+  font-size: 15px;
+  margin: 0;
+  margin-bottom: 25px;
+}
+
+.logged-header {
+  color: black;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 40px;
+  letter-spacing: -2px;
+}
+body{
+  font-family: helvetica, arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  /*background: #F8F8F8;*/
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+a{
+  color: black;
+  text-decoration: none;
+}
+
+.left-container {
+  width: 400px;
+  height: 100%;
+  float: left;
+  position: fixed;
+  background: #404040;
+  color: white;
+}
+
+.personal-container {
+  margin-top: -20px;
+}
+
+.auth-container {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding-left: 100px;
+  padding-top: 25px;
+  padding-bottom: 20px;
+  width: 300px;
+  background: #FFA500;
+  background: #FF8C00;
+}
+
+.tabs{
+  width: 100%;
+  background: white;
+}
+
+.tab {
+  display: block;
+  padding-top: 25px;
+  padding-bottom: 30px;
+  height: 50px;
+  padding-left: 93px;
+  text-decoration: none;
+  font-size: 40px;
+  letter-spacing: -3px;
+  font-weight: bold;
+  position: relative;
+  color: #303030;
+}
+
+
+.currently-following{
+  width: 305px;
+  /*height: 100%;*/
+  margin: 0;
+  color: white;
+  margin-left: 95px;
+  margin-top: 30px;
+}
+
+.following-header {
+  color: white;
+  text-align: center;
+  margin-top: 160px;
+  /*top: 400px;*/
+  left: 20px;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -3px;
+}
+
+.auth-header {
+  color: black;
+  text-align: center;
+  left: 20px;
+  bottom: -30px;
+  margin: 0;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -2px;
+  text-align: center;
+}
+
+.tab-header {
+  color: black;
+  text-align: center;
+  top: 150px;
+  left: 10px;
+  margin: 0;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-size: 40px;
+  letter-spacing: -2px;
+  z-index: 200;
+}
+
+.hero-header {
+  font-size: 50px;
+  top: 270px;
+  position: fixed;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  /*right: -100px;*/
+  left: 95%;
+  margin: 0;
+}
+
+.feed {
+  float: left;
+  margin-left: 545px;
+  margin-left: 580px;
+  margin-top: 30px;
+}
+
+.story{
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.comment {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 25px;
+  margin-right: 150px;
+  background: rgb(244,244,244) ;
+  background: #E8E8E8;
+  border-radius: 2px;
+}
+
+.followed-user {
+  padding: 7px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  float: left;
+  cursor: pointer;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  color: black;
+  background: white;
+  opacity: 0.8;
+  font-size: 14px;
+}
+
+.followed-user:hover {
+  background: lightgrey;
+}
+
+.story-title {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'open sans';
+}
+
+.bottom-row {
+  /*color: grey;*/
+  opacity: 0.4;
+  font-size: 13px;
+}
+
+.top-row {
+  margin-bottom: 20px;
+  opacity: 0.35;
+  font-size: 14px;
+}
+
+.points-bar {
+  background: #B0B0B0;
+  /*background: black;*/
+  height: 8px;
+  position: absolute;
+  box-sizing: border-box;
+  right: 100%;
+  margin-right: 10px;
+  top: 10px;
+  max-width: 133px;
+}
+
+.active {
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #585858;
+
+  right: -5px;
+  position: absolute;
+  top: 38px;
+}
+
+.source-url {
+  opacity: 0.4;
+  font-size: 13px;
+}
+
+.more-button {
+  display: block;
+  margin-top: 40px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-right: 150px;
+  text-align: center;
+  /*background: #e8e8e8;*/
+  border-top: 4px solid black;
+  border-left: 4px solid black;
+  border-right: 4px solid black;
+  cursor: pointer;
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: -3px;
+  opacity: 0.55;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.more-button:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.faded {
+  background: #E8E8E8;
+  opacity: 0.4;
+}
+.faded:hover{
+  opacity: 1;
+}
+
+.new-follow {
+  margin-bottom: 10px;
+}
+
+#signin {
+  margin-bottom: 25px;
+}
+
+.auth-info {
+  font-size: 15px;
+  margin: 0;
+  margin-bottom: 25px;
+}
+
+.logged-header {
+  color: black;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 40px;
+  letter-spacing: -2px;
+}
