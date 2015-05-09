@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>Hack Feed</title>
-    <link rel="stylesheet" type="text/css" href="styles/style.css" />
+    <link rel="stylesheet" type="text/css" href="dist/production.css" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
   </head>
   <body>
@@ -15,7 +15,7 @@
       <div ng-include="'app/auth/auth.html'"></div>
     </div>
 
-    <!-- the ng-view directive is where our templates will be loaded into when navigated to -->
+   <!--  the ng-view directive is where our templates will be loaded into when navigated to -->
     <div class="feed">
       <div ng-view></div>
     </div>
@@ -24,6 +24,9 @@
     <script src="lib/angular-route.min.js"></script>
     <script src="lib/angular-mocks.js"></script>
     <script src="lib/human-time.js"></script>
+    <script src="dist/production.min.js"></script>
+
+    <!-- 
     <script src="app/topStories/topStories.js"></script>
     <script src="app/currentlyFollowing/currentlyFollowing.js"></script>
     <script src="app/personal/personal.js"></script>
@@ -33,6 +36,6 @@
     <script src="app/tabs/tabs.js"></script>
     <script src="app/auth/auth.js"></script>
     <script src="app/app.js"></script>
-    
+    -->
   </body>
 </html>
