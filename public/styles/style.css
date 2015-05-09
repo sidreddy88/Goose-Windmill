@@ -17,6 +17,10 @@ a{
   text-decoration: none;
 }
 
+.story-title:visited {
+  color: #C8C8C8;
+}
+
 button {
   border-radius: 2px;
   background: white;
