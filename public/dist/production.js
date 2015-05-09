@@ -1,176 +1,3 @@
-angular.module('hack.services', [])
-
-.factory('Links', ["$http", "$interval", "Followers", function($http, $interval, Followers) {
-  var personalStories = [];
-  var topStories = [];
-
-  var getTopStories = function() {
-    var url = '/api/cache/topStories'
-
-    return $http({
-      method: 'GET',
-      url: url
-    })
-    .then(function(resp) {
-      topStories.splice(0, topStories.length);
-      topStories.push.apply(topStories, resp.data);
-    });
-  };
-
-  var getPersonalStories = function(usernames){
-    var query = 'http://hn.algolia.com/api/v1/search_by_date?hitsPerPage=500&tagFilters=(story,comment),(';
-    var userQuery = [];
-
-    for(var i = 0; i < usernames.length; i++){
-      userQuery.push('author_' + usernames[i]);
-    }
-
-    query += userQuery.join(',') + ')';
-
-    return $http({
-      method: 'GET',
-      url: query
-    })
-    .then(function(resp) {
-      angular.forEach(resp.data.hits, function(item){
-        if(item.title === null){
-          item.isComment = true;
-        }
-      });
-
-      personalStories.splice(0, personalStories.length);
-      personalStories.push.apply(personalStories, resp.data.hits);
-    });
-  };
-
-  var init = function(){
-    getPersonalStories(Followers.following);
-  };
-
-  init();
-
-  return {
-    getTopStories: getTopStories,
-    getPersonalStories: getPersonalStories,
-    personalStories: personalStories,
-    topStories: topStories
-  };
-}])
-
-.factory('Followers',  ["$http", "$window", function($http, $window) {
-  var following = [];
-
-  var updateFollowing = function(){
-    var user = $window.localStorage.getItem('com.hack');
-
-    if(!!user){
-      var data = {
-        username: user,
-        following: localStorageUsers()
-      };
-
-      $http({
-        method: 'POST',
-        url: '/api/users/updateFollowing',
-        data: data
-      });
-    }
-  };
-
-  var addFollower = function(username){
-    var localFollowing = localStorageUsers();
-
-    if (!localFollowing.includes(username) && following.indexOf(username) === -1) {
-      localFollowing += ',' + username
-      $window.localStorage.setItem('hfUsers', localFollowing);
-      following.push(username);
-    }
-
-    updateFollowing();
-  };
-
-  var removeFollower = function(username){
-    var localFollowing = localStorageUsers();
-
-    if (localFollowing.includes(username) && following.indexOf(username) > -1) {
-      following.splice(following.indexOf(username), 1);
-
-      localFollowing = localFollowing.split(',');
-      localFollowing.splice(localFollowing.indexOf(username), 1).join(',');
-      $window.localStorage.setItem('hfUsers', localFollowing);
-    }
-
-    updateFollowing();
-  };
-
-  var localStorageUsers = function(){
-    return $window.localStorage.getItem('hfUsers');
-  }
-
-  var localToArr = function(){
-    if(!localStorageUsers()){
-      $window.localStorage.setItem('hfUsers', 'pg');
-    }
-
-    var users = localStorageUsers().split(',');
-
-    following.splice(0, following.length);
-    following.push.apply(following, users);
-  }
-
-  var init = function(){
-    localToArr();
-  };
-
-  init();
-
-  return {
-    following: following,
-    addFollower: addFollower,
-    removeFollower: removeFollower,
-    localToArr: localToArr
-  }
-}])
-
-.factory('Auth', ["$http", "$location", "$window", function ($http, $location, $window) {
-  var signin = function (user) {
-    return $http({
-      method: 'POST',
-      url: '/api/users/signin',
-      data: user
-    })
-    .then(function (resp) {
-      return resp.data;
-    });
-  };
-
-  var signup = function (user) {
-    return $http({
-      method: 'POST',
-      url: '/api/users/signup',
-      data: user
-    })
-    .then(function (resp) {
-      return resp.data;
-    });
-  };
-
-  var isAuth = function () {
-    return !!$window.localStorage.getItem('com.hack');
-  };
-
-  var signout = function () {
-    $window.localStorage.removeItem('com.hack');
-  };
-
-
-  return {
-    signin: signin,
-    signup: signup,
-    isAuth: isAuth,
-    signout: signout
-  };
-}]);
 angular.module('hack.auth', [])
 
 .controller('AuthController', ["$scope", "$window", "$location", "Auth", "Followers", 
@@ -219,7 +46,7 @@ angular.module('hack.auth', [])
 
 angular.module('hack.currentlyFollowing', [])
 
-.controller('CurrentlyFollowingController', ["$scope", "Followers", function ($scope, Followers) {
+.controller('CurrentlyFollowingController', function ($scope, Followers) {
   $scope.currentlyFollowing = Followers.following;
 
   $scope.unfollow = function(user){
@@ -230,11 +57,11 @@ angular.module('hack.currentlyFollowing', [])
     Followers.addFollower(user);
     $scope.newFollow = "";
   };
-}]);
+});
 
 angular.module('hack.personal', [])
 
-.controller('PersonalController', ["$scope", "$window", "Links", "Followers", function ($scope, $window, Links, Followers) {
+.controller('PersonalController', function ($scope, $window, Links, Followers) {
   $scope.stories = Links.personalStories;
   $scope.users = Followers.following;
   $scope.index = 30;
@@ -248,23 +75,35 @@ angular.module('hack.personal', [])
   };
   
   init();
-}]);
+});
 
 angular.module('hack.tabs', [])
 
-.controller('TabsController', ["$scope", "$window", function ($scope, $window) {
+.controller('TabsController', function ($scope, $window, Links, Followers) {
+  // If a user refreshes when the location is '/personal',
+  // it will stay on '/personal'.
   var hash = $window.location.hash.split('/')[1];
   hash = !hash ? 'all' : hash;
   $scope.currentTab = hash;
 
+  // What is angle? Don't worry. This just makes the 
+  // refresh button do a cool spin animation. We splurged.
+  $scope.angle = 360;
+
   $scope.changeTab = function(newTab){
     $scope.currentTab = newTab;
-  }
-}]);
+  };
+
+  $scope.refresh = function(){
+    Links.getTopStories();
+    Links.getPersonalStories(Followers.following);
+    $scope.angle += 360;
+  };
+});
 
 angular.module('hack.topStories', [])
 
-.controller('TopStoriesController', ["$scope", "$window", "Links", "Followers", function ($scope, $window, Links, Followers) {
+.controller('TopStoriesController', function ($scope, $window, Links, Followers) {
   angular.extend($scope, Links);
   $scope.stories = Links.topStories;
   $scope.index = 30;
@@ -280,20 +119,22 @@ angular.module('hack.topStories', [])
   };
 
   $scope.getData();
-}]);
+});
 
 
 angular.module('hack', [
   'hack.topStories',
   'hack.personal',
   'hack.currentlyFollowing',
-  'hack.services',
+  'hack.linkService',
+  'hack.authService',
+  'hack.followService',
   'hack.tabs',
   'hack.auth',
   'ngRoute'
 ])
 
-.config(["$routeProvider", "$httpProvider", function($routeProvider, $httpProvider) {
+.config(function($routeProvider, $httpProvider) {
   $routeProvider
     .when('/', {
       templateUrl: 'app/topStories/topStories.html',
@@ -306,7 +147,7 @@ angular.module('hack', [
     .otherwise({
       redirectTo: '/'
     });
-}])
+})
 
 .filter('fromNow', function(){
   return function(date){
@@ -318,5 +159,23 @@ angular.module('hack', [
     return function (text) {
         return $sce.trustAsHtml(text);
     };    
-}]);
+}])
+
+.directive('rotate', function () {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attrs) {
+      scope.$watch(attrs.degrees, function (rotateDegrees) {
+        var r = 'rotate(' + rotateDegrees + 'deg)';
+        element.css({
+          '-moz-transform': r,
+          '-webkit-transform': r,
+          '-o-transform': r,
+          '-ms-transform': r
+        });
+      });
+    }
+  }
+});
+;
 
