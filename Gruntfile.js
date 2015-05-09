@@ -6,14 +6,14 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'public/dist/production.js': 
-             ['public/app/services/services.js',
+             ['public/app/services/**.js',
               'public/app/auth/auth.js',
               'public/app/currentlyFollowing/currentlyFollowing.js',
               'public/app/personal/personal.js',
               'public/app/tabs/tabs.js',
               'public/app/topStories/topStories.js',
               'public/app/app.js'],
-          'public/dist/production.css': ['public/**/*.css']
+          'public/dist/production.css': ['public/styles/*.css']
        },
      }
        },
