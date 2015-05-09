@@ -85,30 +85,28 @@ module.exports = function(grunt) {
         pull: {
             command: 'git pull --rebase upstream master'
         },
-       push: {
-            command: function (branch) {
-             return 'git push origin' + branch;
+        push: {
+            command: function(branch) {
+             return 'git push origin ' + branch;
                 }
             },
           },
         
-	 });
+   });
 
-	 grunt.loadNpmTasks('grunt-contrib-concat');
-	 grunt.loadNpmTasks('grunt-nodemon');
+   grunt.loadNpmTasks('grunt-contrib-concat');
+   grunt.loadNpmTasks('grunt-nodemon');
    grunt.loadNpmTasks('grunt-contrib-uglify');
    grunt.loadNpmTasks('grunt-contrib-cssmin');
    grunt.loadNpmTasks('grunt-contrib-jshint');
    grunt.loadNpmTasks('grunt-ng-annotate');
    grunt.loadNpmTasks('grunt-shell');
 
-
-   grunt.registerTask('gitFunction', 'Upload code to specified target.', function(n) {
-    if (grunt.option('target')) {
-       grunt.task.run([shell.pull]);
-       grunt.task.run([shell.push(target)]);
-    }
-     
+   grunt.registerTask('gitFunctions', 'Pull and push from github', function(n) {
+     if (n){
+       grunt.task.run('shell:pull');
+       grunt.task.run('shell:push:' + n);
+      }
    });
 
    grunt.registerTask('build', [
