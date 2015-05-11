@@ -310,7 +310,8 @@ angular.module('hack.tabs', [])
     $scope.currentTab = newTab;
   };
 
-  $scope.refresh = function(){
+  $scope.refreshs = function(){
+    console.log('hereeeee');
     Links.getTopStories();
     Links.getPersonalStories(Followers.following);
     $scope.angle += 360;
@@ -383,6 +384,7 @@ angular.module('hack', [
     link: function (scope, element, attrs) {
       scope.$watch(attrs.degrees, function (rotateDegrees) {
         var r = 'rotate(' + rotateDegrees + 'deg)';
+        console.log(r);
         element.css({
           '-moz-transform': r,
           '-webkit-transform': r,
