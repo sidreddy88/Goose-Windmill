@@ -1,19 +1,19 @@
 module.exports = function(grunt) {
 
-	 grunt.initConfig({
-	 	pkg: grunt.file.readJSON('package.json'),
-	 	concat: {
+  grunt.initConfig({
+   pkg: grunt.file.readJSON('package.json'),
+     concat: {
       dist: {
         files: {
           'public/dist/production.js': 
-             ['public/app/services/services.js',
+             ['public/app/services/**.js',
               'public/app/auth/auth.js',
               'public/app/currentlyFollowing/currentlyFollowing.js',
               'public/app/personal/personal.js',
               'public/app/tabs/tabs.js',
               'public/app/topStories/topStories.js',
               'public/app/app.js'],
-          'public/dist/production.css': ['public/**/*.css']
+          'public/dist/production.css': ['public/styles/*.css']
        },
      }
        },
@@ -51,6 +51,7 @@ module.exports = function(grunt) {
         ]
       }
     },
+
     // this task needs to be run after concat (and before uglify) is called on any angular files, 
     ngAnnotate: {
         options: {
@@ -70,9 +71,11 @@ module.exports = function(grunt) {
           'public/lib/**/*.js',
         ],
         tasks: [
+          'jshint',
           'concat',
           'ngAnnotate',
-          'uglify'
+          'uglify',
+          'cssmin'
         ]
       },
       css: {
@@ -81,17 +84,33 @@ module.exports = function(grunt) {
       }
     },
 
-     shell: {
-        pull: {
-            command: 'git pull --rebase upstream master'
+    shell: {
+      pull: {
+          command: 'git pull --rebase upstream master'
         },
-        push: {
-            command: function(branch) {
-             return 'git push origin ' + branch;
-                }
-            },
-          },
-        
+      runDB: {
+        command: 'mongod',
+        options: {
+            async: true
+         } 
+        },
+      newTab:{
+        command: 'osascript -e \'tell application \"Terminal\" to activate\' -e \'tell application \"System Events\" to tell process \"Terminal\" to keystroke \"t\" using command down\''
+        },
+      push: {
+        command: function(branch) {
+           return 'git push origin ' + branch;
+         }
+       },
+     },
+
+    open: {
+      all: {
+        path: 'http://localhost:3000/#/'
+      }
+    }
+
+
    });
 
    grunt.loadNpmTasks('grunt-contrib-concat');
@@ -101,7 +120,16 @@ module.exports = function(grunt) {
    grunt.loadNpmTasks('grunt-contrib-jshint');
    grunt.loadNpmTasks('grunt-ng-annotate');
    grunt.loadNpmTasks('grunt-shell');
+   grunt.loadNpmTasks('grunt-contrib-watch');
+   grunt.loadNpmTasks('grunt-shell-spawn');
+   grunt.loadNpmTasks('grunt-run');
+   grunt.loadNpmTasks('grunt-services');
+   grunt.loadNpmTasks('grunt-open');
 
+   //To run this function, call the task gitFunctions and pass in the name of the branch that 
+   // will be pushed up to github
+   //For example, grunt gitFunctions:newFeatureBranch
+   //if no branch name is passed in, nothing happens
    grunt.registerTask('gitFunctions', 'Pull and push from github', function(n) {
      if (n){
        grunt.task.run('shell:pull');
@@ -109,9 +137,37 @@ module.exports = function(grunt) {
       }
    });
 
+   // this is to start and stop the Mongo server
+   grunt.registerTask('start', 'Start all required services', ['startMongo']);
+   grunt.registerTask('stop', 'Stop all services', ['stopMongo']);
+
+   grunt.registerTask('server', function (target) {
+    var nodemon = grunt.util.spawn({
+         cmd: 'grunt',
+         grunt: true,
+         args: ['nodemon']
+    });
+    nodemon.stdout.pipe(process.stdout);
+    nodemon.stderr.pipe(process.stderr);
+
+    // here you can run other tasks e.g. 
+     grunt.task.run([ 'watch' ]);
+
+    });
+
+   //call this task to start the mongo server and the node server
+   grunt.registerTask('startApp', [
+     'start',
+     'server',
+   ]);
+
+   //call this task before something is pushed to github
    grunt.registerTask('build', [
+     'jshint',
      'concat',
      'ngAnnotate',
-     'cssmin',
-  ]);
+     'uglify',
+     'cssmin'
+   ]);
+  
 };
