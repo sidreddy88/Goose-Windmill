@@ -15,7 +15,8 @@ angular.module('hack.tabs', [])
     $scope.currentTab = newTab;
   };
 
-  $scope.refresh = function(){
+  $scope.refreshs = function(){
+    console.log('hereeeee');
     Links.getTopStories();
     Links.getPersonalStories(Followers.following);
     $scope.angle += 360;

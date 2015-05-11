@@ -3,7 +3,8 @@ angular.module('hack.topStories', [])
 .controller('TopStoriesController', function ($scope, $window, Links, Followers) {
   angular.extend($scope, Links);
   $scope.stories = Links.topStories;
-  $scope.index = 30;
+  $scope.perPage = 30;
+  $scope.index = $scope.perPage;
 
   $scope.currentlyFollowing = Followers.following;
 
