@@ -280,7 +280,8 @@ angular.module('hack.personal', [])
 .controller('PersonalController', ["$scope", "$window", "Links", "Followers", function ($scope, $window, Links, Followers) {
   $scope.stories = Links.personalStories;
   $scope.users = Followers.following;
-  $scope.index = 30;
+  $scope.perPage = 30;
+  $scope.index = $scope.perPage;
 
   var init = function(){
     fetchUsers();
@@ -323,7 +324,8 @@ angular.module('hack.topStories', [])
 .controller('TopStoriesController', ["$scope", "$window", "Links", "Followers", function ($scope, $window, Links, Followers) {
   angular.extend($scope, Links);
   $scope.stories = Links.topStories;
-  $scope.index = 30;
+  $scope.perPage = 30;
+  $scope.index = $scope.perPage;
 
   $scope.currentlyFollowing = Followers.following;
 
@@ -373,9 +375,9 @@ angular.module('hack', [
 })
 
 .filter('htmlsafe', ['$sce', function ($sce) { 
-    return function (text) {
-        return $sce.trustAsHtml(text);
-    };    
+  return function (text) {
+    return $sce.trustAsHtml(text);
+  };    
 }])
 
 .directive('rotate', function () {
@@ -395,5 +397,4 @@ angular.module('hack', [
     }
   }
 });
-
 
