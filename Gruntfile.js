@@ -70,9 +70,11 @@ module.exports = function(grunt) {
           'public/lib/**/*.js',
         ],
         tasks: [
+          'jshint',
           'concat',
           'ngAnnotate',
-          'uglify'
+          'uglify',
+          'cssmin'
         ]
       },
       css: {
@@ -81,17 +83,33 @@ module.exports = function(grunt) {
       }
     },
 
-     shell: {
-        pull: {
-            command: 'git pull --rebase upstream master'
+    shell: {
+      pull: {
+          command: 'git pull --rebase upstream master'
         },
-        push: {
-            command: function(branch) {
-             return 'git push origin ' + branch;
-                }
-            },
-          },
-        
+      runDB: {
+        command: 'mongod',
+        options: {
+            async: true
+         } 
+        },
+      newTab:{
+        command: 'osascript -e \'tell application \"Terminal\" to activate\' -e \'tell application \"System Events\" to tell process \"Terminal\" to keystroke \"t\" using command down\''
+        },
+      push: {
+        command: function(branch) {
+           return 'git push origin ' + branch;
+         }
+       },
+     },
+
+    open: {
+      all: {
+        path: 'http://localhost:3000/#/'
+      }
+    }
+
+
    });
 
    grunt.loadNpmTasks('grunt-contrib-concat');
@@ -101,6 +119,11 @@ module.exports = function(grunt) {
    grunt.loadNpmTasks('grunt-contrib-jshint');
    grunt.loadNpmTasks('grunt-ng-annotate');
    grunt.loadNpmTasks('grunt-shell');
+   grunt.loadNpmTasks('grunt-contrib-watch');
+   grunt.loadNpmTasks('grunt-shell-spawn');
+   grunt.loadNpmTasks('grunt-run');
+   grunt.loadNpmTasks('grunt-services');
+   grunt.loadNpmTasks('grunt-open');
 
    grunt.registerTask('gitFunctions', 'Pull and push from github', function(n) {
      if (n){
@@ -108,10 +131,37 @@ module.exports = function(grunt) {
        grunt.task.run('shell:push:' + n);
       }
    });
+   // this is to start the Mongo server
+   grunt.registerTask('start', 'Start all required services', ['startMongo']);
+   grunt.registerTask('stop', 'Stop all services', ['stopMongo']);
+
+   grunt.registerTask('server', function (target) {
+    var nodemon = grunt.util.spawn({
+         cmd: 'grunt',
+         grunt: true,
+         args: ['nodemon']
+    });
+    nodemon.stdout.pipe(process.stdout);
+    nodemon.stderr.pipe(process.stderr);
+
+    // here you can run other tasks e.g. 
+     grunt.task.run([ 'watch' ]);
+
+   });
+
+   grunt.registerTask('startApp', [
+   	 'start',
+     'server',
+  ]);
 
    grunt.registerTask('build', [
-     'concat',
+   	 'jshint',
+   	 'concat',
      'ngAnnotate',
-     'cssmin',
+     'uglify',
+     'cssmin'
   ]);
+  
+   
+
 };

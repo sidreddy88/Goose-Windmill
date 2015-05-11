@@ -53,5 +53,5 @@ angular.module('hack', [
     }
   }
 });
-;
+
 

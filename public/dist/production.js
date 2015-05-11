@@ -393,5 +393,5 @@ angular.module('hack', [
     }
   }
 });
-;
+
 
