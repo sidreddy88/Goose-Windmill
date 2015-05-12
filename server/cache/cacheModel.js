@@ -6,7 +6,7 @@ var topStories = [];
 //Set headers
 var headers = {
   'User-Agent': 'Hacker Feed',
-  'Conontent-Type': 'application/json'  
+  'Content-Type': 'application/json'  
 };
 
 module.exports = {
