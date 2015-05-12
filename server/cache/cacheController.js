@@ -12,5 +12,6 @@ module.exports = {
   }
 };
 
+// Initialize and refresh the top story data every two minutes
 Cache.updateTopStories();
 setInterval(Cache.updateTopStories, 120000);
